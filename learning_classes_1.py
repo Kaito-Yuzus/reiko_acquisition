@@ -8,4 +8,5 @@ class car:
         return '{num_doors} {current_color} {the_brand}'.format(num_doors = self.num_doors, current_color = self.color, the_brand =  self.brand)
         # return '{} {} {}'.format(self.num_doors, self.color, self.brand)
         # Same as the code above, assigns based on order
-print(car(4, 'red', 'ford').to_string())
+car1 = car(4, 'red', 'ford')
+print(car1.to_string())

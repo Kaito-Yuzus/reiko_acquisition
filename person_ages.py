@@ -23,7 +23,7 @@ class people:
 
 person1 = people('John', 'Smith')
 person2 = people('Tom', 'Jones')
-
+person3 = people('Tom', 'Jones')
 
 print('THIS IS AN INSTANCE')
 print('--------------------------')
@@ -49,6 +49,9 @@ print(person2.fullname())
 print(people.adding_age(42))
 print(people.adding_age(42))
 print('--------------------------')
+
+
+print(person3.set_age(1))
 
 
 

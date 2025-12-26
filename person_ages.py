@@ -24,7 +24,8 @@ class people:
 person1 = people('John', 'Smith')
 person2 = people('Tom', 'Jones')
 
-# Instance
+
+print('THIS IS AN INSTANCE')
 print('--------------------------')
 print(person1.fullname())
 print(person1.set_age(31))
@@ -35,11 +36,17 @@ print('--------------------------')
 print(person2.fullname())
 print(person2.set_age(42))
 print('--------------------------')
-# Class
+print(person2.fullname())
+print(person2.set_age(42))
+print('--------------------------')
+
+print('THIS IS A CLASS')
 print(person1.fullname())
+print(people.adding_age(31))
 print(people.adding_age(31))
 print('--------------------------')
 print(person2.fullname())
+print(people.adding_age(42))
 print(people.adding_age(42))
 print('--------------------------')
 

@@ -14,7 +14,7 @@ def exporting_table(db_name, table_name):
         output = cursor.execute(f'SELECT * FROM {table_name}')
         rows = cursor.fetchall()
         df = pd.DataFrame(rows, columns=[column[0] for column in cursor.description])
-        df.to_csv( f'{db_name}.csv', index=False)
+        df.to_csv( f'{table_name}.csv', index=False)
         print('\n Complete')
     else: 
         print('\n Exiting')

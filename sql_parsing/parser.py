@@ -8,13 +8,15 @@ def exporting_table(db_name, table_name):
     root_directory = os.path.dirname(current_directory)
     db_path = f'{root_directory}/db_storage/{db_name}'
     db_exists = os.path.isfile(db_path)
+    output_path = f'{root_directory}/parsed_outputs'
     if db_exists == True:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        output = cursor.execute(f'SELECT * FROM {table_name}')
+        cursor.execute(f'SELECT * FROM {table_name}')
         rows = cursor.fetchall()
         df = pd.DataFrame(rows, columns=[column[0] for column in cursor.description])
-        df.to_csv( f'{table_name}.csv', index=False)
+        final_parsed_path = os.path.join(output_path,f'{table_name}.csv')
+        df.to_csv(final_parsed_path, index=False)
         print('\n Complete')
     else: 
         print('\n Exiting')

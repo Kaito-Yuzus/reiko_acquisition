@@ -26,14 +26,11 @@ class  basic_db_parser:
             df = pd.DataFrame(rows, columns=[column[0] for column in cursor.description])
             final_parsed_path = os.path.join(output_path,f'{self.table_name}.csv')
             df.to_csv(final_parsed_path, index=False)
-            
+
             print('\n Complete')
         
-        else: 
+        else:
 
             print('\n Exiting')
             exit
 
-
-db1 = basic_db_parser('Web Data', 'autofill')
-db1.exporting_table()

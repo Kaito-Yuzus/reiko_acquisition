@@ -1,13 +1,35 @@
 from sql_parsing import parser
 
 
-def main(): 
-    web_data = ['autofill', 'keywords']
+# Google Chrome
+def export_chrome(app_db, db_tables, app_location):  
+        for table in db_tables:
+            chrome = parser.basic_db_parser(app_db, table, app_location)
+            chrome.exporting_table()                
+            
 
-    for table in web_data:
-        db1 = parser.basic_db_parser('Web Data', table)
-        db1.exporting_table()
 
+
+    
+# Instagram
+
+# Google Maps
+
+# Opera Browser
+
+# Twitter
+
+# Whatsapp
+
+# Telegram
+
+# Discord?
+
+# Internet data, including DE
+
+def main():
+    export_chrome('Web Data', ['keywords', 'autofill'], 'chrome')
+    
 
 if __name__ == '__main__':
     main()

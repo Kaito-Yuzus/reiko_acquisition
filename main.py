@@ -28,7 +28,7 @@ def export_chrome(app_db, db_tables, app_location):
 # Internet data, including DE
 
 def main():
-    export_chrome('Web Data', ['keywords', 'autofill'], 'chrome')
+    export_chrome('Web Data', ['keywords', 'autofill'], 'placeholder')
     
 
 if __name__ == '__main__':

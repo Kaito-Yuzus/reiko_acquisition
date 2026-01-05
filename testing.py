@@ -1,5 +1,12 @@
-#empty
-                # with open('output.txt', 'a') as f:
-                #     for file in z.namelist():
-                #         if file.startswith(self.evidence_location):
-                #                 f.write(f'\n{file}') 
+import os
+
+name = __file__
+
+filename = os.path.basename(name)
+print(f'\n{filename}')
+
+abpath = os.path.abspath(__file__)
+print(f'\n{abpath}')
+
+os.path.
+

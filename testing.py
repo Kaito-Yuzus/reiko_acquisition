@@ -1,12 +1,5 @@
 import os
 
-name = __file__
-
-filename = os.path.basename(name)
-print(f'\n{filename}')
-
-abpath = os.path.abspath(__file__)
-print(f'\n{abpath}')
-
-os.path.
-
+filename = os.path.basename(__file__)
+output_path = os.path.join('reiko_acquisition/db_storage', filename, 'hello')
+print(output_path)

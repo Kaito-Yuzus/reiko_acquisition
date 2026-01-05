@@ -24,16 +24,13 @@ class database_grabber:
                         if name.startswith(self.evidence_location) and name.endswith(db):
                             print(f'\n{name}')
                             print('File Exists')
-                            # filename = os.path.basename(name)
                             purgatory = z.extract(name, path='reiko_acquisition/purgatory')
+                            output_path = os.path.join('reiko_acquisition/db_storage', evidence_storage)
+                            shutil.move(purgatory, output_path)
+                            # Need a function to delete and recreate the folder
 
-                            # output_path = os.path.join('reiko_acquisition', filename)
-                            shutil.move(purgatory, 'reiko_acquisition')
-
-                            # reiko_acquisition
                         
-                    
-
+                
 archive_target = '/mnt/c/Users/Stinky/Desktop/forensic_tools/datasets/Android_14_Public_Image.tar/Android_14_Public_Image.tar' 
 zp_target = 'Android_14_Public_Image/UFED Google Pixel 7a 2024_07_28 (001)/EXTRACTION_FFS 01/EXTRACTION_FFS.zip'
 evidence_location = 'Dump/data/data/com.android.chrome/app_chrome/Default'

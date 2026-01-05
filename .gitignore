@@ -2,3 +2,4 @@ venv
 .venv
 .vscode
 .gitignore
+__pycache__

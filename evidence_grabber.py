@@ -29,6 +29,7 @@ class database_grabber:
                             print(f'\n{name}')
                             print('File Exists')
                             with tempfile.TemporaryDirectory() as temp_dir:
-                                file_staging = z.extract(name, path=f'reiko_acquisition/{temp_dir}')
+                                file_staging = z.extract(name, path=temp_dir)
                                 shutil.move(file_staging, output_path)
+                                #Add a timestamp to the extracted file, so its always different
                             

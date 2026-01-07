@@ -1,5 +1,6 @@
 from sql_parsing import parser
 import evidence_grabber
+import extraction_upload
 # Location after extraction
 archive_target = '/mnt/c/Users/Stinky/Desktop/forensic_tools/datasets/Android_14_Public_Image.tar/Android_14_Public_Image.tar' 
 zp_target = 'Android_14_Public_Image/UFED Google Pixel 7a 2024_07_28 (001)/EXTRACTION_FFS 01/EXTRACTION_FFS.zip'

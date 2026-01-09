@@ -31,15 +31,6 @@ class database_grabber:
                                 shutil.move(file_staging, output_path)
                             
 
-
-
-
-                            # with tempfile.TemporaryDirectory() as temp_dir:
-                            #     file_staging = tar.extract(filename, path=temp_dir)
-                            #     shutil.move(file_staging, output_path)
-                            #     #Add a timestamp to the extracted file, so its always different
-
-
 def main():
 
     def gather_chrome(gz_target, app_data_location, db_list, app_data_storage):

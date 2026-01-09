@@ -2,9 +2,19 @@ import parser
 import evidence_grabber_dataset
 import self_app_extraction
 
+import tkinter as tk
+from tkinter import filedialog
+
+root = tk.Tk()
+root.withdraw()
+extraction_path = filedialog.askopenfilename()
+
 # archive_target = r'C:\Users\Stinky\Desktop\forensic_tools\datasets\Android_14_Public_Image.tar\Android_14_Public_Image.tar' 
 # zp_target = r'Android_14_Public_Image/UFED Google Pixel 7a 2024_07_28 (001)/EXTRACTION_FFS 01/EXTRACTION_FFS.zip'
-gz_target = gz_target = r"C:\Users\Stinky\Desktop\output\extraction.tar.gz"
+
+#gz_target = r"C:\Users\Stinky\Desktop\output\extraction.tar.gz"
+ 
+gz_target = extraction_path
 
 # # Google Chrome
 

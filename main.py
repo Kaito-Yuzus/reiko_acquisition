@@ -1,5 +1,5 @@
 import parser
-import evidence_grabber_dataset
+from extras import evidence_grabber_dataset
 import self_app_extraction
 
 import tkinter as tk

@@ -14,3 +14,4 @@ tzdata==2025.3
 Werkzeug==3.1.4
 
 # Needs to have adb.exe in the folder path for the program
+#Also mention I needed RootAVD in order to gain root to the device

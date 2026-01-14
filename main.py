@@ -1,9 +1,10 @@
 import parser
 from extras import evidence_grabber_dataset
 import self_app_extraction
-
+import shutil
 import tkinter as tk
 from tkinter import filedialog
+
 
 root = tk.Tk()
 root.withdraw()
@@ -26,9 +27,9 @@ def gather_chrome_gz(gz_target, app_data_location, db_list, app_data_storage):
         chrome = self_app_extraction.database_grabber(gz_target, app_data_location, db_list, app_data_storage)
         chrome.app_datadata()   
 
-def export_chrome(app_db, db_tables, app_location):  
+def export_chrome(app_db, db_tables, app_location, db_parsed_path):  
     for table in db_tables:
-        chrome = parser.basic_db_parser(app_db, table, app_location)
+        chrome = parser.basic_db_parser(app_db, table, app_location, db_parsed_path)
         chrome.exporting_table()   
 
 
@@ -50,15 +51,24 @@ def export_chrome(app_db, db_tables, app_location):
 
 def main():
 
-    gather_chrome_gz(
-        gz_target,  
-        r'Dump/data/data/com.android.chrome/app_chrome/Default', 
-        ['/History', '/Web Data'], 
-        'chrome'          
-                )
-    export_chrome('History', ['urls', 'visits'], 'chrome')
-    # export_chrome('Web Data', ['keywords', 'autofill'], 'chrome')
+    # gather_chrome_gz(
+    #     gz_target,  
+    #     r'Dump/data/data/com.android.chrome/app_chrome/Default', 
+    #     ['/History', '/Web Data'], 
+    #     'chrome'          
+    #             )
+    export_chrome('History', ['urls', 'visits'], 'chrome', 'Chrome History')
+    export_chrome('Web Data', ['keywords', 'autofill'], 'chrome', 'Chrome Web Data')
     
 
 if __name__ == '__main__':
     main()
+    rm_folder = input('y or n for file deletion\n')
+    if rm_folder == 'y':
+        shutil.rmtree(r'C:\Users\Stinky\Desktop\final_project\reiko_acquisition\parsed_outputs')
+        # Figure out how to delete the folder without any errors
+        print('Files were deleted\n')
+        exit()
+    else: 
+         print('Files were not deleted and closing\n')
+         exit()

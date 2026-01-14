@@ -3,7 +3,9 @@ import pandas as pd
 import os
 import datetime
 
-    
+transcript_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%f")
+
+
 class basic_db_parser:
     def __init__(self, db_name, table_name, db_location, db_parsed_path):
         self.db_name = db_name
@@ -36,7 +38,9 @@ class basic_db_parser:
             df.to_csv(final_parsed_path, index=False)
             conn.close()
             del df
+            print(transcript_time)
             print(f'Exporting {self.db_name}\n')
+            print(transcript_time)
             print('Parsing Complete\n')
             
         else:

@@ -24,12 +24,13 @@ gz_target = extraction_path
 #     chrome.app_datadata()
     
 def gather_chrome_gz(gz_target, app_data_location, db_list, app_data_storage):
-        chrome = self_app_extraction.database_grabber(gz_target, app_data_location, db_list, app_data_storage)
+        chrome = self_app_extraction.database_grabber
+        (gz_target, app_data_location, db_list, app_data_storage)
         chrome.app_datadata()   
 
-def export_chrome(app_db, db_tables, app_location, db_parsed_path):  
+def export_chrome(db_name, db_tables, app_location, db_parsed_path):  
     for table in db_tables:
-        chrome = parser.basic_db_parser(app_db, table, app_location, db_parsed_path)
+        chrome = parser.chrome_csv(db_name, table, app_location, db_parsed_path)
         chrome.exporting_table()   
 
 

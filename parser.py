@@ -5,6 +5,10 @@ import datetime
 
 transcript_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%f")
 
+def date_from_webkit(webkit_timestamp):
+    epoch_start = datetime.datetime(1601,1,1)
+    delta = datetime.timedelta(microseconds=int(webkit_timestamp))
+    return (epoch_start + delta)     
 
 class basic_db_parser:
     def __init__(self, db_name, table_name, db_location, db_parsed_path):
@@ -39,15 +43,47 @@ class basic_db_parser:
             conn.close()
             del df
             print(transcript_time)
-            print(f'Exporting {self.db_name}\n')
+            print(f'Exporting {self.db_name}_{self.table_name}\n')
             print(transcript_time)
-            print('Parsing Complete\n')
+            print('Parsing Complete\n------------------\n')
+            return final_parsed_path
             
         else:
             print('\n Does not exist, moving to next database')  
         
-def main(): 
-    pass 
+class chrome_csv(basic_db_parser):
+
+    def exporting_table(self):
+        csv_path = super().exporting_table()
+        print(csv_path)
+        
+        if csv_path is None: 
+            return
+        
+        df = pd.read_csv(csv_path)
+        
+        if "visit_time" in df.columns:
+            df["visit_time"] = df["visit_time"].apply(date_from_webkit)
+            df.to_csv(csv_path, index=False)
+        
+        if "last_visit_time" in df.columns:
+            df["last_visit_time"] = df["last_visit_time"].apply(date_from_webkit)
+            df.to_csv(csv_path, index=False)
+
+        return
+
+   
+
+
+
+
+def main():
+    def export_chrome(db_name, db_tables, db_location, db_parsed_path):              
+        for table in db_tables: 
+            chrome = chrome_csv(db_name, table, db_location, db_parsed_path)
+            chrome.exporting_table()
+    export_chrome('History', ['urls', 'visits'], 'chrome', 'Chrome History')
+
 
 
 

@@ -70,6 +70,14 @@ class chrome_csv(basic_db_parser):
             df["last_visit_time"] = df["last_visit_time"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
 
+        if "date_created" in df.columns:
+            df["date_created"] = df["date_created"].apply(date_from_webkit)
+            df.to_csv(csv_path, index=False)
+
+        if "last_modified" in df.columns:
+            df["last_modified"] = df["last_modified"].apply(date_from_webkit)
+            df.to_csv(csv_path, index=False)
+
         return
 
    

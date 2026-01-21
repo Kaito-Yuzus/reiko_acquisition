@@ -17,7 +17,7 @@ def main():
     # execute_command([terminal, adb_path, 'shell', "su -c tar -czvf /storage/emulated/0/target/extraction.tar.gz data --transform 's|^|Dump/|S'"])
     execute_command([terminal, adb_path, 'pull', f"sdcard/target/hello.txt {extraction_path}"])
 # sdcard/target/extraction.tar.gz
-
+# Have a mechanism that checks if it work and to remove the created directory and the gzip tar file on target device
 # This works, can proceed to using the gzip tar archive
 
 if __name__ == '__main__':

@@ -1,26 +1,13 @@
-# import subprocess
+import xml.etree.ElementTree as ET
+#import pandas as pd
 
-# # Files
-# key = r"C:\Users\Stinky\Desktop\forensic_tools\datasets\whatsapp messages\key"
-# encrypted_db = r"C:\Users\Stinky\Desktop\forensic_tools\datasets\whatsapp messages\msgstore-2024-07-22.1.db.crypt14"
+xml_path = r'C:\Users\IKS.LAPTOP-AMM5L6TN\Desktop\final_project\reiko_acquisition\WifiConfigStore.xml'
+tree = ET.parse(xml_path) 
+root = tree.getroot()
 
+#parent = root.find('SoftAp')
 
-# import subprocess
-# def execute_command(command):
-#     # Run the command
-#     output = subprocess.run(command, capture_output=True, text=True,)
-#     print(output.stdout)
-
-
-# execute_command(['powershell', 'ls'])
-
-
-
-def hello(): 
-    return "Hello World"
-
-print(hello())
-
-# print(google_time)
+for item in root:
+    print(item.tag)
 
 

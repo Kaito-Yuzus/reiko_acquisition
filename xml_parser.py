@@ -21,8 +21,7 @@ for par_element in root.iter():
             'Name': name,
             'Value': value, 
             })
-
-            # Strip whitespaces within the .csv 
+            # Strip whitespaces within the .csv for better use
         elif num is not None:
             data.append({
             'Element' : par_element.tag,
@@ -41,7 +40,7 @@ for par_element in root.iter():
             'Name': name,
             'Value': 'Empty', 
             })
-            print('THis section is empty')
+            print('This section is empty')
 
 df = pd.DataFrame(data, columns=['Element', 'Name', 'Value'])
 df.to_csv('output.csv', index=False)

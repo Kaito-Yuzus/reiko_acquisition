@@ -14,6 +14,8 @@ class database_grabber:
         self.app_data_storage = app_data_storage
 
     def app_datadata(self):
+        if not os.path.exists('reiko_acquisition\db_storage'):
+            os.mkdir('reiko_acquisition\db_storage')
         output_path = os.path.join(r'reiko_acquisition\db_storage', self.app_data_storage)
         if not os.path.exists(output_path):
             os.mkdir(output_path)

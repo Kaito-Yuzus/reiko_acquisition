@@ -9,7 +9,7 @@ def date_from_webkit(webkit_timestamp):
     epoch_start = datetime.datetime(1601,1,1)
     delta = datetime.timedelta(microseconds=int(webkit_timestamp))
     return (epoch_start + delta)     
-
+#master
 class basic_db_parser:
     def __init__(self, db_name, table_name, db_location, db_parsed_path):
         self.db_name = db_name
@@ -50,7 +50,7 @@ class basic_db_parser:
             
         else:
             print('\n Does not exist, moving to next database')  
-        
+#slave  
 class chrome_csv(basic_db_parser):
 
     def exporting_table(self):
@@ -79,7 +79,7 @@ class chrome_csv(basic_db_parser):
             df.to_csv(csv_path, index=False)
 
         return
-
+#slave
    
 
 

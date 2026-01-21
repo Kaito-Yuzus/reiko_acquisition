@@ -6,7 +6,7 @@ tree = ET.parse(xml_path)
 root = tree.getroot()
 
 data = []
-for par_element in root:
+for par_element in root.iter():
     for item in par_element:
         name = item.get('name')
         value = item.get('value')
@@ -15,21 +15,33 @@ for par_element in root:
         if name is None: 
             continue
 
-
-        if value is None: 
-            data.append({
-            'Element' : par_element.tag,
-            'Name': name,
-            'Value': text, 
-            })
-
-            # Decide How I will make num work
-        if value num is None
+        if value is not None: 
             data.append({
             'Element' : par_element.tag,
             'Name': name,
             'Value': value, 
             })
+
+            # Strip whitespaces within the .csv 
+        elif num is not None:
+            data.append({
+            'Element' : par_element.tag,
+            'Name': name,
+            'Value': num, 
+            })
+        elif text is not None: 
+            data.append({
+            'Element' : par_element.tag,
+            'Name': name,
+            'Value': text, 
+            })
+        else: 
+            data.append({
+            'Element' : par_element.tag,
+            'Name': name,
+            'Value': 'Empty', 
+            })
+            print('THis section is empty')
 
 df = pd.DataFrame(data, columns=['Element', 'Name', 'Value'])
 df.to_csv('output.csv', index=False)

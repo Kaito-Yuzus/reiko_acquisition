@@ -3,6 +3,7 @@ import xml.etree.ElementTree as ET
 import pandas as pd 
 import datetime
 #Remember to change db_storage to final path
+#Also a write to host equivalent for transcripts
 def transctipt(text): 
     RED = "\033[31m"
     RESET = "\033[0m"
@@ -10,6 +11,7 @@ def transctipt(text):
     print(f'{RED}[{transcript_time}]{RESET}')
     print(f'{RED}[{text}]{RESET}\n')
 
+#master
 class basic_xml_parser: 
     def __init__(self, xml_name, xml_location, xml_parsed_path):
         self.xml_name = xml_name

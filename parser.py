@@ -63,23 +63,29 @@ class chrome_csv(basic_db_parser):
         if csv_path is None: 
             return
         
+        transctipt(f'Loading {csv_path}')
         df = pd.read_csv(csv_path)
-        
+        transctipt('Converting time format')
         if "visit_time" in df.columns:
+            transctipt(f'{csv_path}')
             df["visit_time"] = df["visit_time"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
+            transctipt('Time conversion complete')
         
         if "last_visit_time" in df.columns:
             df["last_visit_time"] = df["last_visit_time"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
+            transctipt('Time conversion complete')
 
         if "date_created" in df.columns:
             df["date_created"] = df["date_created"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
+            transctipt('Time conversion complete')
 
         if "last_modified" in df.columns:
             df["last_modified"] = df["last_modified"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
+            transctipt('Time conversion complete')
 
         return
 #slave

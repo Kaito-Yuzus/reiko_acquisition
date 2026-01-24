@@ -3,7 +3,12 @@ import pandas as pd
 import os
 import datetime
 
-transcript_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%f")
+def transctipt(text): 
+    RED = "\033[31m"
+    RESET = "\033[0m"
+    transcript_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%f")
+    print(f'{RED}[{transcript_time}]{RESET}')
+    print(f'{RED}[{text}]{RESET}\n')
 
 def date_from_webkit(webkit_timestamp):
     epoch_start = datetime.datetime(1601,1,1)
@@ -39,17 +44,15 @@ class basic_db_parser:
             os.makedirs(output_path, exist_ok=True)
             timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')
             final_parsed_path = os.path.join(output_path,f'{self.table_name}_{timestamp}.csv')
+            transctipt(f'Parsing {self.db_name}_{self.table_name}\n')
             df.to_csv(final_parsed_path, index=False)
+            transctipt('Parsing Complete')
             conn.close()
             del df
-            print(transcript_time)
-            print(f'Exporting {self.db_name}_{self.table_name}\n')
-            print(transcript_time)
-            print('Parsing Complete\n------------------\n')
             return final_parsed_path
             
         else:
-            print('\n Does not exist, moving to next database')  
+            transctipt('Does not exist, moving to next database')  
 #slave  
 class chrome_csv(basic_db_parser):
 

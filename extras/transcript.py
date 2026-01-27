@@ -1,6 +1,6 @@
 import logging 
 import subprocess
-import os
+
 import datetime
 
 timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')

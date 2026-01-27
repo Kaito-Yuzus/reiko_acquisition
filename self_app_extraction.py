@@ -8,7 +8,6 @@ from datetime import datetime
 class database_grabber: 
     def __init__(self, gz_target, app_data_location, db_list, app_data_storage):
         self.gz_target = gz_target
-        # self.archive_target = archive_target
         self.app_data_location = app_data_location
         self.db_list = db_list
         self.app_data_storage = app_data_storage

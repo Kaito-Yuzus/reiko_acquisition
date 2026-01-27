@@ -65,6 +65,13 @@ class basic_xml_parser:
                         })
 
             df = pd.DataFrame(data, columns=['Element', 'Name', 'Value'])
+            #remove white spaces
+            for column in ['Element', 'Name', 'Value']:
+                    for i in range(len(df)):
+                        cell_value = df.at[i, column]
+                        if isinstance(cell_value, str):
+                            df.at[i, column] = cell_value.strip()
+
             timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')
             final_parsed_path = os.path.join(output_path,f'{self.xml_name}_{timestamp}.csv')
             df.to_csv(final_parsed_path, index=False)

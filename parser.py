@@ -2,31 +2,34 @@ import sqlite3
 import pandas as pd
 import os
 import datetime
-
-def transctipt(text): 
-    RED = "\033[31m"
-    RESET = "\033[0m"
-    transcript_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%f")
-    print(f'{RED}[{transcript_time}]{RESET}')
-    print(f'{RED}[{text}]{RESET}\n')
-
+import logging
+#Add the logging stuff
 def date_from_webkit(webkit_timestamp):
     epoch_start = datetime.datetime(1601,1,1)
     delta = datetime.timedelta(microseconds=int(webkit_timestamp))
     return (epoch_start + delta)     
 #master
 class basic_db_parser:
-    def __init__(self, db_name, table_name, db_location, db_parsed_path):
+    def __init__(self, db_name, table_name, db_location, db_parsed_path, log_path):
         self.db_name = db_name
         self.table_name = table_name
         self.db_location = db_location
         self.db_parsed_path = db_parsed_path
+        self.log_path = log_path
 
     def exporting_table(self):
         
+        logging.basicConfig(
+        level=logging.INFO, 
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers= [
+            logging.FileHandler(self.log_path),
+            logging.StreamHandler()
+            ]
+        )
+
         root_directory = os.path.dirname(__file__)
         db_path = fr'{root_directory}\db_storage\{self.db_location}\{self.db_name}'
-        
         db_exists = os.path.isfile(db_path)
   
 
@@ -44,15 +47,16 @@ class basic_db_parser:
             os.makedirs(output_path, exist_ok=True)
             timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')
             final_parsed_path = os.path.join(output_path,f'{self.table_name}_{timestamp}.csv')
-            transctipt(f'Parsing {self.db_name}_{self.table_name}\n')
+            logging.info(f'Parsing {self.db_name}_{self.table_name}\n')
             df.to_csv(final_parsed_path, index=False)
-            transctipt('Parsing Complete')
+            logging.info('Parsing Complete')
             conn.close()
             del df
             return final_parsed_path
             
         else:
-            transctipt('Does not exist, moving to next database')  
+            pass
+            logging.info('Does not exist, moving to next database')  
 #slave  
 class chrome_csv(basic_db_parser):
 
@@ -63,45 +67,54 @@ class chrome_csv(basic_db_parser):
         if csv_path is None: 
             return
         
-        transctipt(f'Loading {csv_path}')
+        logging.info(f'Loading {csv_path}')
         df = pd.read_csv(csv_path)
-        transctipt('Converting time format')
+        logging.info('Converting time format')
         if "visit_time" in df.columns:
-            transctipt(f'{csv_path}')
+            logging.info(f'{csv_path}')
             df["visit_time"] = df["visit_time"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
-            transctipt('Time conversion complete')
+            logging.info('Time conversion complete')
         
         if "last_visit_time" in df.columns:
             df["last_visit_time"] = df["last_visit_time"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
-            transctipt('Time conversion complete')
+            logging.info('Time conversion complete')
 
         if "date_created" in df.columns:
             df["date_created"] = df["date_created"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
-            transctipt('Time conversion complete')
+            logging.info('Time conversion complete')
 
         if "last_modified" in df.columns:
             df["last_modified"] = df["last_modified"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
-            transctipt('Time conversion complete')
+            logging.info('Time conversion complete')
 
         return
 #slave
    
 
-
-
-
 def main():
-    def export_chrome(db_name, db_tables, db_location, db_parsed_path):              
+    timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')
+    log_file = f'db_parser_{timestamp}.log' 
+    logging.basicConfig(
+    level=logging.INFO, 
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers= [
+        logging.FileHandler(log_file),
+        logging.StreamHandler()
+    ]
+    )
+
+    def export_chrome(db_name, db_tables, db_location, db_parsed_path, log_path):              
         for table in db_tables: 
-            chrome = chrome_csv(db_name, table, db_location, db_parsed_path)
+            chrome = chrome_csv(db_name, table, db_location, db_parsed_path, log_path)
             chrome.exporting_table()
-    export_chrome('History', ['urls', 'visits'], 'chrome', 'Chrome History')
+    logging.info('Exporting all databases')
+    export_chrome('History', ['urls', 'visits'], 'chrome', 'Chrome History', log_file)
 
-
+# Test if logging works
 
 
 if __name__ == '__main__':

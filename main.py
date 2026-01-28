@@ -2,9 +2,10 @@ import parser
 import self_app_extraction
 import shutil
 import tkinter as tk
-import os
 from tkinter import filedialog
-
+import os
+import datetime
+import logging
 
 root = tk.Tk()
 root.withdraw()
@@ -40,6 +41,18 @@ def export_chrome(db_name, db_tables, app_location, db_parsed_path):
 # Internet data, including DE
 
 def main():
+
+    timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')
+    log_file = f'extraction_{timestamp}.log'
+    
+    logging.basicConfig(
+        level=logging.INFO, 
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers= [
+            logging.FileHandler(log_file),
+            logging.StreamHandler()
+        ]
+    )
 
     gather_chrome_gz(
         extraction_path,  

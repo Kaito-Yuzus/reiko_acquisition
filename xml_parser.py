@@ -6,8 +6,6 @@ import logging
 #Remember to change db_storage to final path
 
 #master
-
-
 class basic_xml_parser: 
     def __init__(self, xml_name, xml_location, xml_parsed_path, log_path):
         self.xml_name = xml_name

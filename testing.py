@@ -25,4 +25,5 @@ def execute_command(command):
         process.wait()
         logging.info(f'Command Complete')
 
+
 execute_command(['wadecrypt.exe', 'key', 'msgstore.db.crypt14', 'msgstore.db'])

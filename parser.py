@@ -3,6 +3,8 @@ import pandas as pd
 import os
 import datetime
 import logging
+import subprocess
+
 def date_from_webkit(webkit_timestamp):
     epoch_start = datetime.datetime(1601,1,1)
     delta = datetime.timedelta(microseconds=int(webkit_timestamp))
@@ -91,6 +93,8 @@ class chrome_csv(basic_db_parser):
 
         return
 #slave
+# class whatsapp_csv(basic_db_parser):
+    #pass
    
 
 def main():
@@ -105,12 +109,37 @@ def main():
     ]
     )
 
+    def execute_command(command):
+            cmd_str = ' '.join(command)
+            logging.info(f'Executing [{cmd_str}]')
+            full_command = ["powershell", "-NoProfile", "-Command", cmd_str]
+
+            process = subprocess.Popen(full_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+            for line in process.stdout:
+                logging.info(line.strip())
+            process.wait()
+            logging.info(f'Command Complete')
+
     def export_chrome(db_name, db_tables, db_location, db_parsed_path, log_path):              
         for table in db_tables: 
             chrome = chrome_csv(db_name, table, db_location, db_parsed_path, log_path)
             chrome.exporting_table()
 
+    def export_whatsapp(db_name, db_tables, db_location, db_parsed_path, log_path):
+        for table in db_tables: 
+            whatsapp = basic_db_parser(db_name, table, db_location, db_parsed_path, log_path)
+            whatsapp.exporting_table()
+
+
     logging.info('[Exporting all databases]')
+
+    root_directory = os.path.dirname(__file__)
+    wadb_path = fr'{root_directory}\db_storage\whatsapp'
+    encrypted_wadb_exists = os.path.isfile(fr'{wadb_path}\msgstore.db.crypt14')
+    if encrypted_wadb_exists == True: 
+        execute_command(['wadecrypt.exe', fr'{wadb_path}\key', fr'{wadb_path}\msgstore.db.crypt14', fr'{wadb_path}\msgstore.db'])
+        export_whatsapp('msgstore.db', ['message', 'jid'], 'whatsapp', 'whatsapp_chats', log_file)
+
     export_chrome('History', ['urls', 'visits'], 'chrome', 'Chrome History', log_file)
 
 

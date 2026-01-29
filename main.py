@@ -55,7 +55,7 @@ def main():
         ]
     )
 
-    #Start Here
+    #Start Here Collection
 
     # Google Chrome 
     evidence_collection(
@@ -101,8 +101,8 @@ def main():
     evidence_collection(
         gz_target=extraction_path,  
         app_data_location=r'Dump/data/media/0/Android/media/com.whatsapp/WhatsApp', 
-        db_list=['/History', '/Web Data', '/Top Sites', '/Cookies'], 
-        app_data_storage='chrome',
+        db_list=['/msgstore.db.crypt14'], 
+        app_data_storage='whatsapp',
         log_path=log_file, 
     )
     
@@ -110,7 +110,7 @@ def main():
         gz_target=extraction_path,  
         app_data_location=r'Dump/data/data/com.whatsapp/files', 
         db_list=['/key'], 
-        app_data_storage='chrome',
+        app_data_storage='whatsapp',
         log_path=log_file, 
     )
     # Telegram
@@ -129,15 +129,66 @@ def main():
     #     app_data_storage='chrome',
     #     log_path=log_file, 
     # )
-    # Internet data, including DE
-    # evidence_collection(
-    #     gz_target=extraction_path,  
-    #     app_data_location=r'Dump/data/data/com.android.chrome/app_chrome/Default', 
-    #     db_list=['/History', '/Web Data', '/Top Sites', '/Cookies'], 
-    #     app_data_storage='chrome',
-    #     log_path=log_file, 
-    # )
+    # Wifi/Internet data, including DE
+    evidence_collection(
+        gz_target=extraction_path,  
+        app_data_location=r'Dump/data/misc/bluedroid', 
+        db_list=['/bt_config.bak', '/bt_config.conf', 'interop_database_dynamic.conf'], 
+        app_data_storage='bluetooth',
+        log_path=log_file, 
+    )
 
+    evidence_collection(
+        gz_target=extraction_path,  
+        app_data_location=r'Dump/data/system', 
+        db_list=['/netpolicy.xml'], 
+        app_data_storage='wifi',
+        log_path=log_file, 
+    )
+    
+    evidence_collection(
+        gz_target=extraction_path,  
+        app_data_location=r'Dump/data/misc/apexdata/com.android.wifi', 
+        db_list=['/WifiConfigStore.xml', '/WifiConfigStoreSoftAp.xml'], 
+        app_data_storage='wifi_std',
+        log_path=log_file, 
+    )
+
+    evidence_collection(
+        gz_target=extraction_path,  
+        app_data_location=r'Dump/data/misc_ce/0/apexdata/com.android.wifi', 
+        db_list=['/WifiConfigStore.xml', '/WifiConfigStoreNetworkSuggestions.xml'], 
+        app_data_storage='wifi_ce',
+        log_path=log_file, 
+    )
+
+    evidence_collection(
+        gz_target=extraction_path,  
+        app_data_location=r'Dump/data/misc_de/0/apexdata/com.android.wifi', 
+        db_list=['/WifiConfigStore.xml', '/WifiConfigStoreSoftAp.xml'], 
+        app_data_storage='wifi_de',
+        log_path=log_file, 
+    )
+
+    #Start Here Collection
+
+    # Google Chrome
+    
+    # Instagram
+
+    # Google Maps
+
+    # Opera Browser
+
+    # Twitter
+
+    # Whatsapp
+
+    # Telegram
+
+    # Discord?
+
+    # Wifi/Internet, including DE
     
 
 if __name__ == '__main__':

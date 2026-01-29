@@ -34,7 +34,7 @@ class basic_xml_parser:
             tree = ET.parse(xml_path) 
             root = tree.getroot()
             data = []
-            logging.info(f'Parsing {self.xml_name}')
+            logging.info(f'[Parsing {self.xml_name}]')
             for par_element in root.iter():
                 for item in par_element:
                     name = item.get('name')
@@ -78,8 +78,8 @@ class basic_xml_parser:
 
             timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')
             final_parsed_path = os.path.join(output_path,f'{self.xml_name}_{timestamp}.csv')
-            logging.info(f'Parsing {self.xml_name} Completed')
-            logging.info(f'Exporting {self.xml_name} to CSV')
+            logging.info(f'[Parsing Completed]')
+            logging.info(f'[Exporting {self.xml_name} to CSV]\n')
             df.to_csv(final_parsed_path, index=False)
             del df
             return final_parsed_path
@@ -102,7 +102,7 @@ def main():
         xml_file = basic_xml_parser(xml_name, xml_location, xml_parsed_path, log_path)
         xml_file.xml_to_csv()
     
-    logging.info('Parsing XML Files')
+    logging.info('[Parsing XML Files]\n')
 
     export_xml(
         xml_name='WifiConfigStore.xml',
@@ -110,7 +110,7 @@ def main():
         xml_parsed_path='wifi',
         log_path=log_file,
     )
-    logging.info('All XML Files Parsed')
+    logging.info('[All XML Files Parsed]')
         
 
 

@@ -15,7 +15,7 @@ class database_grabber:
         self.db_list = db_list
         self.app_data_storage = app_data_storage
         self.log_path = log_path
-
+#master
     def app_datadata(self):
         logging.basicConfig(
         level=logging.INFO, 
@@ -34,23 +34,28 @@ class database_grabber:
         
         with gzip.open(self.gz_target) as gz_file:
             with tarfile.open(fileobj=gz_file) as tar:
-                logging.info('[Moving and Checking Files]')
+                logging.info('[Moving and Checking Files]\n')
                 for db in self.db_list:                 
                     for filename in tar.getnames():
                         if filename.startswith(self.app_data_location) and filename.endswith(db):
-                            logging.info(f'[Extracting {filename}]')
-                            # Extracts files in a loading area
-                            with tempfile.TemporaryDirectory() as temp_dir:
-                                tar.extract(filename, path=temp_dir, filter="data")
-                                file_staging = os.path.join(temp_dir, filename)
-                                #Moves file from staging area to an output destination
-                                shutil.move(file_staging, output_path)
-                            
+                            if os.path.exists(f'{output_path}{db}') == False:
+                                logging.info(f'[Extracting {filename} temp_dir]')
+                                # Extracts files in a loading area
+                                with tempfile.TemporaryDirectory() as temp_dir:
+                                    tar.extract(filename, path=temp_dir, filter="data")
+                                    file_staging = os.path.join(temp_dir, filename)
+                                    #Moves file from staging area to an output destination
+                                    logging.info(f'[Moving to {output_path}]\n')
+                                    shutil.move(file_staging, output_path)
+                                    break
+                            elif os.path.exists(os.path.join(output_path, db)) == True: 
+                                logging.info(f'[{db} already exists, clear /parse_staging]\n')
+                                break
                             
 def main():
 
     timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')
-    log_file = f'db_parsing_{timestamp}.log' 
+    log_file = f'moving_evidence_{timestamp}.log' 
     logging.basicConfig(
     level=logging.INFO, 
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -75,6 +80,7 @@ def main():
         app_data_storage='chrome',
         log_path=log_file,        
     )
+    logging.info('Extraction Sucessful')
     
 if __name__ == '__main__':
     main()

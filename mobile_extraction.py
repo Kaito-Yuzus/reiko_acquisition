@@ -5,6 +5,7 @@ from tkinter import filedialog
 import logging
 import datetime
 
+#Works at the moment
 def main():
 
 #transcript

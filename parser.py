@@ -3,7 +3,6 @@ import pandas as pd
 import os
 import datetime
 import logging
-#Add the logging stuff
 def date_from_webkit(webkit_timestamp):
     epoch_start = datetime.datetime(1601,1,1)
     delta = datetime.timedelta(microseconds=int(webkit_timestamp))
@@ -47,49 +46,48 @@ class basic_db_parser:
             os.makedirs(output_path, exist_ok=True)
             timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')
             final_parsed_path = os.path.join(output_path,f'{self.table_name}_{timestamp}.csv')
-            logging.info(f'Parsing {self.db_name}_{self.table_name}\n')
+            logging.info(f'[Parsing {self.db_name}_{self.table_name}]')
             df.to_csv(final_parsed_path, index=False)
-            logging.info('Parsing Complete')
+            logging.info('[Parsing Complete]\n')
             conn.close()
             del df
             return final_parsed_path
             
         else:
             pass
-            logging.info('Does not exist, moving to next database')  
+            logging.info('[Does not exist, moving to next database]')  
 #slave  
 class chrome_csv(basic_db_parser):
 
     def exporting_table(self):
         csv_path = super().exporting_table()
-        print(csv_path)
         
         if csv_path is None: 
             return
         
-        logging.info(f'Loading {csv_path}')
+        logging.info(f'[Loading {csv_path}]')
         df = pd.read_csv(csv_path)
-        logging.info('Converting time format')
+        logging.info('[Converting time format]')
         if "visit_time" in df.columns:
-            logging.info(f'{csv_path}')
+            logging.info(f'[{csv_path}]')
             df["visit_time"] = df["visit_time"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
-            logging.info('Time conversion complete')
+            logging.info('[Time conversion complete]')
         
         if "last_visit_time" in df.columns:
             df["last_visit_time"] = df["last_visit_time"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
-            logging.info('Time conversion complete')
+            logging.info('[Time conversion complete]')
 
         if "date_created" in df.columns:
             df["date_created"] = df["date_created"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
-            logging.info('Time conversion complete')
+            logging.info('[Time conversion complete]')
 
         if "last_modified" in df.columns:
             df["last_modified"] = df["last_modified"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
-            logging.info('Time conversion complete')
+            logging.info('[Time conversion complete]')
 
         return
 #slave
@@ -111,10 +109,9 @@ def main():
         for table in db_tables: 
             chrome = chrome_csv(db_name, table, db_location, db_parsed_path, log_path)
             chrome.exporting_table()
-    logging.info('Exporting all databases')
-    export_chrome('History', ['urls', 'visits'], 'chrome', 'Chrome History', log_file)
 
-# Test if logging works
+    logging.info('[Exporting all databases]')
+    export_chrome('History', ['urls', 'visits'], 'chrome', 'Chrome History', log_file)
 
 
 if __name__ == '__main__':

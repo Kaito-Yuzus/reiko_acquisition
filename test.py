@@ -6,7 +6,6 @@ import os
 import tkinter as tk
 import datetime
 from tkinter import filedialog
-import posixpath
 
 root = tk.Tk()
 root.withdraw()
@@ -56,21 +55,16 @@ def file_extraction(gz_target, evidence_files):
                     os.mkdir(os.path.join(stor_path, storage_name))
                     # Extracts files in a loading area
                     for target_file in files:
-                        for filename in tar.getnames():
-                            if filename.startswith(location) and filename.endswith(target_file):
-                                print(f'[Extracting {files} to temp_dir loading area]')
-                                os.makedirs('output', exist_ok=True)
-                                tar.extract(filename, path='output')
-                                with tempfile.TemporaryDirectory() as temp_dir:                                   
-                                    try: 
-                                        #Moves file from staging area to an output destination
-                                        file_loading_area = os.path.join(temp_dir, target_file)
-                                        final_path = os.path.join(stor_path, storage_name, target_file)                
-                                        tar.extract(filename, path=temp_dir, filter="data")
-                                        print(f'[Moving {target_file} to {final_path}]\n')
-                                        shutil.move(file_loading_area, final_path)
-                                    except Exception as e: 
-                                        print(f'{e}')
+                        full_file_path = fr'{location}/{target_file}'
+                        print(f'[Extracting {files} to temp_dir loading area]')
+                        with tempfile.TemporaryDirectory() as temp_dir:                                   
+                                #Moves file from staging area to an output destination
+                                final_path = os.path.join(stor_path, storage_name, target_file)                
+                                tar.extract(full_file_path, path=temp_dir)
+                                print(f'[Moving {target_file} to {final_path}]\n')
+                                shutil.move(fr'{temp_dir}\{target_file}', final_path)
+
+                            
 
 
 

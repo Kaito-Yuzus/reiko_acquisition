@@ -30,7 +30,7 @@ class basic_db_parser:
         )
 
         root_directory = os.path.dirname(__file__)
-        db_path = fr'{root_directory}\db_storage\{self.db_location}\{self.db_name}'
+        db_path = fr'{root_directory}\evidence_storage\{self.db_location}\{self.db_name}'
         db_exists = os.path.isfile(db_path)
   
 
@@ -158,7 +158,7 @@ def main():
     logging.info('[Exporting all databases]')
 
     root_directory = os.path.dirname(__file__)
-    wadb_path = fr'{root_directory}\db_storage\whatsapp'
+    wadb_path = fr'{root_directory}\evidence_storage\whatsapp'
     encrypted_wadb_exists = os.path.isfile(fr'{wadb_path}\msgstore.db.crypt14')
     if encrypted_wadb_exists == True: 
         execute_command(['wadecrypt.exe', fr'{wadb_path}\key', fr'{wadb_path}\msgstore.db.crypt14', fr'{wadb_path}\msgstore.db'])

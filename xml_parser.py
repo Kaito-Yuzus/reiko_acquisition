@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 import pandas as pd 
 import datetime
 import logging
-#Remember to change db_storage to final path
+#Remember to change evidence_storage to final path
 
 #master
 class basic_xml_parser: 
@@ -25,7 +25,7 @@ class basic_xml_parser:
         )
 
         root_directory = os.path.dirname(__file__)
-        xml_path = fr'{root_directory}\db_storage\{self.xml_location}\{self.xml_name}'
+        xml_path = fr'{root_directory}\evidence_storage\{self.xml_location}\{self.xml_name}'
         xml_exists = os.path.isfile(xml_path)
 
         if xml_exists == True: 

@@ -8,11 +8,11 @@ import logging
 import tkinter as tk
 from tkinter import filedialog
 
-class database_grabber: 
-    def __init__(self, gz_target, app_data_location, db_list, app_data_storage, log_path):
+class evidence_grabber: 
+    def __init__(self, gz_target, app_data_location, app_evidence_list, app_data_storage, log_path):
         self.gz_target = gz_target
         self.app_data_location = app_data_location
-        self.db_list = db_list
+        self.app_evidence_list = app_evidence_list
         self.app_data_storage = app_data_storage
         self.log_path = log_path
 #master
@@ -26,16 +26,16 @@ class database_grabber:
             ]
         )
 
-        if os.path.exists(r'reiko_acquisition\db_storage') == False:
-            os.mkdir(r'reiko_acquisition\db_storage')
-        output_path = os.path.join(r'reiko_acquisition\db_storage', self.app_data_storage)
+        if os.path.exists(r'reiko_acquisition\evidence_storage') == False:
+            os.mkdir(r'reiko_acquisition\evidence_storage')
+        output_path = os.path.join(r'reiko_acquisition\evidence_storage', self.app_data_storage)
         if os.path.exists(output_path) == False:
             os.mkdir(output_path) 
         
         with gzip.open(self.gz_target) as gz_file:
             with tarfile.open(fileobj=gz_file) as tar:
                 logging.info('[Moving and Checking Files]\n')
-                for db in self.db_list:                 
+                for db in self.app_evidence_list:                 
                     for filename in tar.getnames():
                         if filename.startswith(self.app_data_location) and filename.endswith(db):
                             if os.path.exists(f'{output_path}{db}') == False:
@@ -65,8 +65,8 @@ def main():
     ]
 )
     
-    def gather_evidence(gz_target, app_data_location, db_list, app_data_storage, log_path):
-        evidence = database_grabber(gz_target, app_data_location, db_list, app_data_storage, log_path)
+    def gather_evidence(gz_target, app_data_location, app_evidence_list, app_data_storage, log_path):
+        evidence = evidence_grabber(gz_target, app_data_location, app_evidence_list, app_data_storage, log_path)
         evidence.app_datadata()   
 
     root = tk.Tk()
@@ -76,7 +76,7 @@ def main():
     gather_evidence(
         gz_target=extraction_path,  
         app_data_location=r'Dump/data/data/com.android.chrome/app_chrome/Default', 
-        db_list=['/History', '/Web Data'], 
+        app_evidence_list=['/History', '/Web Data'], 
         app_data_storage='chrome',
         log_path=log_file,        
     )

@@ -87,7 +87,8 @@ class basic_xml_parser:
                 del df
         return final_parsed_path
 
-
+#Slave
+#Will be used for AXML implementat
 def main(): 
 
     logging.basicConfig(

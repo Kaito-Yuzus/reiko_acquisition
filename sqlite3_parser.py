@@ -59,7 +59,7 @@ class basic_db_parser:
             pass
             logging.info('[Does not exist, moving to next database]')  
 #slave  
-class chrome_csv(basic_db_parser):
+class webrowser_csv(basic_db_parser):
 
     def exporting_table(self):
         csv_path = super().exporting_table()
@@ -146,7 +146,7 @@ def main():
 
     def export_chrome(db_name, db_tables, db_location, db_parsed_path, log_path):              
         for table in db_tables: 
-            chrome = chrome_csv(db_name, table, db_location, db_parsed_path, log_path)
+            chrome = webrowser_csv(db_name, table, db_location, db_parsed_path, log_path)
             chrome.exporting_table()
 
     def export_whatsapp(db_name, db_tables, db_location, db_parsed_path, log_path):

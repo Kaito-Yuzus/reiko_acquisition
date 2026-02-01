@@ -107,9 +107,9 @@ def main():
     logging.info('[Parsing XML Files]\n')
 
     export_xml(
-        xml_name= ['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml'],
-        xml_location='wifi_std', 
-        xml_parsed_path='wifi_std',
+        xml_name= ['CacheStore.xml', 'ClientInfoCache.xml', 'FastCacheStore.xml'],
+        xml_location='discord', 
+        xml_parsed_path='discord',
         log_path=log_file,
     )
 

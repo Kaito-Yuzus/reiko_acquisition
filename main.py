@@ -18,7 +18,27 @@ kpi_evidence = [
     (r'Dump/data/data/com.android.chrome/app_chrome/Default',
      ['History', 'Web Data', 'Top Sites', 'Cookies'],
      'chrome_browser'),
-    
+
+    #Discord
+    (r'Dump/data/data/com.discord/shared_prefs',
+     ['CacheStore.xml', 'ClientInfoCache.xml', 'FastCacheStore.xml'],
+     'discord'),
+     
+     (r'Dump/data/data/com.discord/app_webview/Default',
+     ['Cookies'],
+     'discord'),
+
+    #WhatsApp
+    (r'Dump/data/media/0/Android/media/com.whatsapp/WhatsApp/Databases',
+     ['msgstore.db.crypt14', 'msgstore-2024-07-22.1.db.crypt14', 'msgstore-2024-07-24.1.db.crypt14', 
+      'msgstore-2024-07-25.1.db.crypt14', 'msgstore-2024-07-26.1.db.crypt14',
+      'msgstore-increment-1.db.crypt14'],
+     'whatsapp'),
+
+     (r'Dump/data/data/com.whatsapp/files',
+     ['key'],
+     'whatsapp'),
+
     #Network
     (r'Dump/data/misc/bluedroid',
      ['bt_config.bak', 'bt_config.conf', 'interop_database_dynamic.conf'],
@@ -35,6 +55,10 @@ kpi_evidence = [
     (r'Dump/data/misc_ce/0/apexdata/com.android.wifi',
      ['WifiConfigStore.xml', 'WifiConfigStoreNetworkSuggestions.xml'],
      'wifi_ce'),
+
+     (r'Dump/data/misc_de/0/apexdata/com.android.wifi',
+     ['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml'],
+     'wifi_de'),
 ]
 
 def main():
@@ -94,7 +118,6 @@ if __name__ == '__main__':
 
         if os.path.exists(evidence_storage):
             shutil.rmtree(evidence_storage)
-        # Figure out how to delete the folder without any errors
         print('Files were deleted\n')
         exit()
     else: 

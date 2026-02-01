@@ -80,12 +80,12 @@ class basic_xml_parser:
                                 df.at[i, column] = cell_value.strip()
 
                 timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')
-                final_parsed_path = os.path.join(output_path,f'{xml_file}_{timestamp}.csv')
+                final_parsed_path = os.path.join(output_path, f'{xml_file}_{timestamp}.csv')
                 logging.info(f'[Parsing Completed]')
                 logging.info(f'[Exporting {self.xml_name} to CSV]\n')
                 df.to_csv(final_parsed_path, index=False)
                 del df
-        return final_parsed_path
+                return final_parsed_path
 
 #Slave
 #Will be used for AXML implementat

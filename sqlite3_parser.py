@@ -92,22 +92,22 @@ class webrowser_csv(basic_db_parser):
             logging.info('[Time conversion complete]')
 
         if "creation_utc" in df.columns:
-            df["last_modified"] = df["last_modified"].apply(date_from_webkit)
+            df["creation_utc"] = df["creation_utc"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
             logging.info('[Time conversion complete]')
         
         if "expires_utc" in df.columns:    
-            df["last_modified"] = df["last_modified"].apply(date_from_webkit)
+            df["expires_utc"] = df["expires_utc"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
             logging.info('[Time conversion complete]')
 
         if "last_access_utc" in df.columns:
-            df["last_modified"] = df["last_modified"].apply(date_from_webkit)
+            df["last_access_utc"] = df["last_access_utc"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
             logging.info('[Time conversion complete]')
 
         if "last_update_utc" in df.columns:
-            df["last_modified"] = df["last_modified"].apply(date_from_webkit)
+            df["last_update_utc"] = df["last_update_utc"].apply(date_from_webkit)
             df.to_csv(csv_path, index=False)
             logging.info('[Time conversion complete]')
 

@@ -19,6 +19,11 @@ kpi_evidence = [
      ['History', 'Web Data', 'Top Sites', 'Cookies'],
      'chrome_browser'),
 
+    #Google Maps------------------------------------------------------------------------------------------
+    (r'Dump/data/data/com.android.chrome/app_chrome/Default',
+     ['History', 'Web Data', 'Top Sites', 'Cookies'],
+     'chrome_browser'),
+
     #Discord
     (r'Dump/data/data/com.discord/shared_prefs',
      ['CacheStore.xml', 'ClientInfoCache.xml', 'FastCacheStore.xml'],
@@ -59,6 +64,61 @@ kpi_evidence = [
      (r'Dump/data/misc_de/0/apexdata/com.android.wifi',
      ['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml'],
      'wifi_de'),
+
+     #Telegram
+     (r'Dump/data/data/org.telegram.messenger/files',
+     ['file_to_path.db', 'cache4'],
+     'telegram'),
+     
+     (r'Dump/data/data/org.telegram.messenger/shared_prefs',
+     ['userconfing'],
+     'telegram'),
+
+     #Snapchat
+     (r'Dump/data/data/com.snapchat.android/databases',
+     ['arroyo', 'main'],
+     'snapchat'),
+
+     (r'Dump/data/data/com.snapchat.android/shared_prefs',
+     ['LoginSignupStore'],
+     'snapchat'),
+
+     (r'Dump/data/data/com.snapchat.android/files/native_content_manager',
+     ['all_dir'],
+     'snapchat'),
+
+    #Mobile Device Info
+    (r'Dump/data/system/users/0',
+     ['settings_secure'],
+     'device_info'),
+
+     (r'Dump/data/system/usagestats/0',
+     ['version'],
+     'device_info'),
+
+     (r'Dump/data/drm/pvt',
+     ['ahrh'],
+     'device_info'),
+
+     (r'Dump/data/user_de/0/com.android.providers.telephony/databases',
+     ['telephony.db'],
+     'device_info'),
+
+     (r'Dump/data/misc/bootstat',
+     ['factory_reset', 'last_boot_time_utc'],
+     'device_info'),
+
+     (r'Dump/data/data/com.google.android.apps.turbo/databases',
+     ['turbo', 'appusage'],
+     'device_info'),
+
+     (r'Dump/data/data/com.google.android.settings.intelligence/databases',
+     ['battery-usage-db-v4'],
+     'device_info'),
+
+
+
+
 ]
 
 def main():

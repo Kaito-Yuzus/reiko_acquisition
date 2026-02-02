@@ -10,7 +10,7 @@ def main():
 
 #transcript
     timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')
-    log_file = f'extraction_{timestamp}.log'
+    log_file = f'mobile_extraction_{timestamp}.log'
     
     logging.basicConfig(
         level=logging.INFO, 

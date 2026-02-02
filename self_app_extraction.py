@@ -91,8 +91,7 @@ def main():
     (r'Dump/data/data/com.android.chrome/app_chrome/Default',
      ['History', 'Web Data', 'Top Sites', 'Cookies'],
      'chrome_browser'),
-    
-    #Network
+
     (r'Dump/data/misc/bluedroid',
      ['bt_config.bak', 'bt_config.conf', 'interop_database_dynamic.conf'],
      'bluetooth'),
@@ -109,9 +108,17 @@ def main():
      ['WifiConfigStore.xml', 'WifiConfigStoreNetworkSuggestions.xml'],
      'wifi_ce'),
 
-     (r'Dump/data/data/com.snapchat.android/files/native_content_manager',
-     ['all_dir'],
+    (r'Dump/data/data/com.snapchat.android/databases',
+     ['arroyo.db', 'main.db'],
      'snapchat'),
+
+    (r'Dump/data/data/com.snapchat.android/shared_prefs',
+     ['LoginSignupStore'],
+     'snapchat'),
+
+    # (r'Dump/data/data/com.snapchat.android/files/native_content_manager',
+    #  ['all_dir'],
+    #  'snapchat'),
 ]
 
     root = tk.Tk()

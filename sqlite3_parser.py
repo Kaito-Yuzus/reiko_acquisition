@@ -158,13 +158,40 @@ def main():
     logging.info('[Exporting all databases]')
 
     root_directory = os.path.dirname(__file__)
-    wadb_path = fr'{root_directory}\evidence_storage\whatsapp'
-    encrypted_wadb_exists = os.path.isfile(fr'{wadb_path}\msgstore.db.crypt14')
-    if encrypted_wadb_exists == True: 
-        execute_command(['wadecrypt.exe', fr'{wadb_path}\key', fr'{wadb_path}\msgstore.db.crypt14', fr'{wadb_path}\msgstore.db'])
-        export_whatsapp('msgstore.db', ['message', 'jid'], 'whatsapp', 'whatsapp_chats', log_file)
+    # wadb_path = fr'{root_directory}\evidence_storage\whatsapp'
+    # encrypted_wadb_exists = os.path.isfile(fr'{wadb_path}\msgstore.db.crypt14')
+    # if encrypted_wadb_exists == True: 
+    #     execute_command(['wadecrypt.exe', fr'{wadb_path}\key', fr'{wadb_path}\msgstore.db.crypt14', fr'{wadb_path}\msgstore.db'])
+    #     export_whatsapp('msgstore.db', ['message', 'jid'], 'whatsapp', 'whatsapp_chats', log_file)
 
-    export_chrome('History', ['urls', 'visits'], 'chrome', 'Chrome History', log_file)
+    # export_chrome('History', ['urls', 'visits'], 'chrome', 'Chrome History', log_file)
+
+    def google_maps_export(db_name, db_tables, db_location, db_parsed_path, log_path): 
+        for table in db_tables: 
+            maps = basic_db_parser(db_name, table, db_location, db_parsed_path, log_path)
+            maps.exporting_table()
+
+    google_maps_evidence = [
+    ('gnp_fcm_database',
+        ['gnp_accounts'],
+        'whatsapp',
+        'whatsapp'), 
+
+    ('Web gmm_storage.db',
+        ['gmm_storage_table'],
+        'whatsapp',
+        'whatsapp'),         
+    ]
+    
+    for database, tables, location, parsed_path in google_maps_evidence:
+        google_maps_export(
+            db_name = database,
+            db_tables = tables,
+            db_location = location,
+            db_parsed_path = parsed_path,
+            log_path = log_file
+        )
+
 
 
 if __name__ == '__main__':

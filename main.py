@@ -203,7 +203,7 @@ def main():
          'chrome_browser'),
 
         ('Web Data',
-         ['autofill', 'keywords', 'credit_cards', 'local_addresses', 'contact_info'],
+         ['autofill', 'keywords', 'credit_cards', 'contact_info'],
          'chrome_browser',
          'chrome_browser'),
 

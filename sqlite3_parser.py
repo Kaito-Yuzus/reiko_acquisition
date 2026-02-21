@@ -32,8 +32,7 @@ class basic_db_parser:
         root_directory = os.path.dirname(__file__)
         db_path = fr'{root_directory}\evidence_storage\{self.db_location}\{self.db_name}'
         db_exists = os.path.isfile(db_path)
-  
-
+        
         if db_exists == True:
 
             output_path = os.path.join(root_directory, 'parsed_outputs', self.db_parsed_path)

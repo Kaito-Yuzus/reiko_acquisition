@@ -11,115 +11,114 @@ import xml_parser
 
 #Mobile extraction path
 
- 
 ###Collection Items###
 kpi_evidence = [
     #Chrome 
     (r'Dump/data/data/com.android.chrome/app_chrome/Default',
-     ['History', 'Web Data', 'Top Sites', 'Cookies'],
-     'chrome_browser'),
+    ['History', 'Web Data', 'Top Sites', 'Cookies'],
+    'chrome_browser'),
 
     #Google Maps
     (r'Dump/data/data/com.google.android.apps.maps/databases',
-     ['gnp_fcm_database', 'gmm_storage.db'],
-     'google_maps'),
+    ['gnp_fcm_database', 'gmm_storage.db'],
+    'google_maps'),
 
     (r'Dump/data/data/com.google.android.apps.maps/cache/image_manager_disk_cache',
-     ['all_dir'],
-     'google_maps'),
+    ['all_dir'],
+    'google_maps'),
 
     #Discord
     (r'Dump/data/data/com.discord/shared_prefs',
-     ['CacheStore.xml', 'ClientInfoCache.xml', 'FastCacheStore.xml'],
-     'discord'),
-     
-     (r'Dump/data/data/com.discord/app_webview/Default',
-     ['Cookies'],
-     'discord'),
+    ['CacheStore.xml', 'ClientInfoCache.xml', 'FastCacheStore.xml'],
+    'discord'),
+    
+    (r'Dump/data/data/com.discord/app_webview/Default',
+    ['Cookies'],
+    'discord'),
 
     #WhatsApp
     (r'Dump/data/media/0/Android/media/com.whatsapp/WhatsApp/Databases',
-     ['msgstore.db.crypt14', 'msgstore-2024-07-22.1.db.crypt14', 'msgstore-2024-07-24.1.db.crypt14', 
-      'msgstore-2024-07-25.1.db.crypt14', 'msgstore-2024-07-26.1.db.crypt14',
-      'msgstore-increment-1.db.crypt14'],
-     'whatsapp'),
+    ['msgstore.db.crypt14', 'msgstore-2024-07-22.1.db.crypt14', 'msgstore-2024-07-24.1.db.crypt14', 
+    'msgstore-2024-07-25.1.db.crypt14', 'msgstore-2024-07-26.1.db.crypt14',
+    'msgstore-increment-1.db.crypt14'],
+    'whatsapp'),
 
     (r'Dump/data/data/com.whatsapp/files',
-     ['key'],
-     'whatsapp'),
+    ['key'],
+    'whatsapp'),
 
     #Network
     (r'Dump/data/misc/bluedroid',
-     ['bt_config.bak', 'bt_config.conf', 'interop_database_dynamic.conf'],
-     'bluetooth'),
+    ['bt_config.bak', 'bt_config.conf', 'interop_database_dynamic.conf'],
+    'bluetooth'),
 
     (r'Dump/data/system',
-     ['netpolicy.xml'],
-     'wifi'),
+    ['netpolicy.xml'],
+    'wifi'),
 
     (r'Dump/data/misc/apexdata/com.android.wifi',
-     ['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml'],
-     'wifi_std'),
+    ['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml'],
+    'wifi_std'),
 
     (r'Dump/data/misc_ce/0/apexdata/com.android.wifi',
-     ['WifiConfigStore.xml', 'WifiConfigStoreNetworkSuggestions.xml'],
-     'wifi_ce'),
+    ['WifiConfigStore.xml', 'WifiConfigStoreNetworkSuggestions.xml'],
+    'wifi_ce'),
 
     (r'Dump/data/misc_de/0/apexdata/com.android.wifi',
-     ['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml'],
-     'wifi_de'),
+    ['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml'],
+    'wifi_de'),
 
     #Telegram
     (r'Dump/data/data/org.telegram.messenger/files',
-     ['file_to_path.db', 'cache4.db'],
-     'telegram'),
-     
+    ['file_to_path.db', 'cache4.db'],
+    'telegram'),
+    
     (r'Dump/data/data/org.telegram.messenger/shared_prefs',
-     ['userconfing.xml'],
-     'telegram'),
+    ['userconfing.xml'],
+    'telegram'),
 
     #Snapchat
     (r'Dump/data/data/com.snapchat.android/databases',
-     ['arroyo.db', 'main.db'],
-     'snapchat'),
+    ['arroyo.db', 'main.db'],
+    'snapchat'),
 
     (r'Dump/data/data/com.snapchat.android/shared_prefs',
-     ['LoginSignupStore.xml'],
-     'snapchat'),
+    ['LoginSignupStore.xml'],
+    'snapchat'),
 
     (r'Dump/data/data/com.snapchat.android/files/native_content_manager',
-     ['all_dir'],
-     'snapchat'),
+    ['all_dir'],
+    'snapchat'),
 
     #Mobile Device Info
     (r'Dump/data/system/users/0',
-     #This needs AXML
-     ['settings_secure.xml'],
-     'device_info'),
+    #This needs AXML
+    ['settings_secure.xml'],
+    'device_info'),
 
     (r'Dump/data/system/usagestats/0',
-     ['version'],
-     'device_info'),
+    ['version'],
+    'device_info'),
 
     (r'Dump/data/drm/pvt',
-     ['ahrh'],
-     'device_info'),
+    ['ahrh'],
+    'device_info'),
 
     (r'Dump/data/user_de/0/com.android.providers.telephony/databases',
-     ['telephony.db'],
-     'device_info'),
+    ['telephony.db'],
+    'device_info'),
 
     (r'Dump/data/misc/bootstat',
-     ['factory_reset', 'last_boot_time_utc'],
-     'device_info'),
+    ['factory_reset', 'last_boot_time_utc'],
+    'device_info'),
 
     (r'Dump/data/data/com.google.android.apps.turbo/databases',
-     ['turbo.db', 'appusage.db'],
-     'device_info'),
+    ['turbo.db', 'appusage.db'],
+    'device_info'),
 
     (r'Dump/data/data/com.google.android.settings.intelligence/databases',
-     ['battery-usage-db-v4'],
-     'device_info'),
+    ['battery-usage-db-v4'],
+    'device_info'),
 
 
 
@@ -166,7 +165,6 @@ def main():
         evidence_files = kpi_evidence,
         log_path = log_file
         )
-   
     
     #Evidence To Parse
     # Note to self, blobs will not get exported via csv
@@ -175,83 +173,82 @@ def main():
 
     snapchat_evidence_sql = [
         #Has blobs and weirds files also
-         ('arroyo.db',
-         ['conversation', 'local_message_content'],
-         'snapchat',
-         'snapchat'),
+        ('arroyo.db',
+        ['conversation', 'local_message_content'],
+        'snapchat',
+        'snapchat'),
 
-         ('main.db',
-         ['contact', 'story', 'friend'],
-         'snapchat',
-         'snapchat'),
+        ('main.db',
+        ['contact', 'story', 'friend'],
+        'snapchat',
+        'snapchat'),
 
-     ]
+    ]
     
     discord_evidence_sql = [
-         ('Cookies',
-         ['cookies'],
-         'discord',
-         'discord')
+        ('Cookies',
+        ['cookies'],
+        'discord',
+        'discord')
 
-     ]
+    ]
 
     chrome_browser_evidence_sql = [
- 
         ('History',
-         ['urls', 'visits'],
-         'chrome_browser',
-         'chrome_browser'),
+        ['urls', 'visits'],
+        'chrome_browser',
+        'chrome_browser'),
 
         ('Web Data',
-         ['autofill', 'keywords', 'credit_cards', 'contact_info'],
-         'chrome_browser',
-         'chrome_browser'),
+        ['autofill', 'keywords', 'credit_cards', 'contact_info'],
+        'chrome_browser',
+        'chrome_browser'),
 
         ('Top Sites',
-         ['top_sites'],
-         'chrome_browser',
-         'chrome_browser'),
+        ['top_sites'],
+        'chrome_browser',
+        'chrome_browser'),
 
         ('Cookies',
-         ['cookies'],
-         'chrome_browser',
-         'chrome_browser')
+        ['cookies'],
+        'chrome_browser',
+        'chrome_browser')
 
     ]
 
     google_maps_evidence_sql = [
         #Change db used and grab the rest, they are needed to be viewed
         ('gnp_fcm_database',
-         ['gnp_accounts'],
-         'google_maps',
-         'google_maps'), 
+        ['gnp_accounts'],
+        'google_maps',
+        'google_maps'), 
 
         ('Web gmm_storage.db',
-         ['gmm_storage_table'],
-         'google_maps',
-         'google_maps'),         
+        ['gmm_storage_table'],
+        'google_maps',
+        'google_maps'),         
     ]
     
     
     
     whatsapp_evidence_sql = [
         ('msgstore.db.',
-         ['message', 'jid'],
-         'whatsapp',
-         'whatsapp')
+        ['message', 'jid'],
+        'whatsapp',
+        'whatsapp')
 
     ]
 
     device_info__evidence_sql = [
         ('turbo.db.',
-         ['battery_event', 'charging_places'],
-         'device_info',
-         'device_info'),
+        ['battery_event', 'charging_places'],
+        'device_info',
+        'device_info'),
 
-         ('telephony.db.',
-         ['carriers', 'siminfo'],
-         'device_info',
-         'device_info')
+        ('telephony.db.',
+        ['carriers', 'siminfo'],
+        'device_info',
+        'device_info')
 
     ]
 
@@ -269,44 +266,44 @@ def main():
 
     discord_evidence_xml = [
         (['CacheStore.xml', 'ClientInfoCache.xml', 'FastCacheStore.xml'],
-         'discord',
-         'discord'),
+        'discord',
+        'discord'),
 
     ]
 
     telegram_evidence_xml = [
         (['userconfing.xml'],
-         'telegram',
-         'telegram'),
+        'telegram',
+        'telegram'),
 
     ]
 
     snapchat_evidence_xml = [
         (['LoginSignupStore.xml'],
-         'snapchat',
-         'snapchat'),
+        'snapchat',
+        'snapchat'),
     ]
 
     internet_evidence_xml = [
         
         (['WifiConfigStore.xml', 'WifiConfigStoreNetworkSuggestions.xml'],
-         'wifi_ce',
-         'wifi_ce'),
+        'wifi_ce',
+        'wifi_ce'),
         
         # (['netpolicy.xml'],
         #  'wifi',
         #  'wifi'),
         #Add Later, is encoded as a AXML
 
-         (['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml'],
-         'wifi_de',
-         'wifi_de'),
+        (['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml'],
+        'wifi_de',
+        'wifi_de'),
 
-         (['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml'],
-         'wifi_std',
-         'wifi_std'),
+        (['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml'],
+        'wifi_std',
+        'wifi_std'),
 
-         #Add Bluetooth later with custom csv input
+        #Add Bluetooth later with custom csv input
     ]
 
     
@@ -492,5 +489,5 @@ for handler in logging.getLogger().handlers[:]:
         print('Files were deleted\n')
         exit()
     else: 
-         print('Files were not deleted and closing\n')
-         exit()
+        print('Files were not deleted and closing\n')
+        exit()

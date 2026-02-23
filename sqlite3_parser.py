@@ -43,6 +43,9 @@ class basic_db_parser:
             cursor.execute(f'SELECT * FROM {self.table_name}')
             rows = cursor.fetchall()
 
+            columns = []
+            for column in cursor.description:
+                columns.append(column[0])
             df = pd.DataFrame(rows, columns=[column[0] for column in cursor.description])
             os.makedirs(output_path, exist_ok=True)
             timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')

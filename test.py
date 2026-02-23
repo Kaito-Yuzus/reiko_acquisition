@@ -1,7 +1,32 @@
-data = b"\xc2\xae\xbcv........\".QY&..X....\".QY&..X......\xbae\"I can\xe2..t seem to call you at all... .."
+import sqlite3
+import pandas as pd
+import os
+#gmm_storage.db
+root = os.path.dirname(__file__)
+file_path = os.path.join(root, "gmm_storage.db")
+if os.path.isfile(file_path) == True:
+    
+            conn = sqlite3.connect(file_path)
+            cursor = conn.cursor()
+            cursor.execute('SELECT * FROM gmm_storage_table  LIMIT 2')
+            rows = cursor.fetchall()
+            
+            with open("output.txt", "w") as file:
+                for row in rows:
+                    file.write(row)
 
-# Extract printable ASCII characters
-import string
+            
 
-ascii_text = ''.join([chr(b) for b in data if chr(b) in string.printable])
-print(ascii_text)
+
+            # columns = []
+            # for column in cursor.description:
+            #     columns.append(column[0])
+            # df = pd.DataFrame(rows, columns=[column[0] for column in cursor.description])
+            
+            
+            conn.close()
+            # del df
+            
+else:
+    pass
+    print("Ending")

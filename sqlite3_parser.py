@@ -121,7 +121,6 @@ class webrowser_csv(basic_db_parser):
 #slave
 # class whatsapp_csv(basic_db_parser):
     #pass
-   
 
 def main():
     timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')

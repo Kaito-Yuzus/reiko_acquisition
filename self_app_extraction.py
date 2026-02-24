@@ -39,7 +39,7 @@ class evidence_grabber:
                 logging.info('[Opening Tar Archive]\n')
 
                 for location, files, storage_name in self.evidence_files: 
-                   
+                
 
                     if files == ['all_dir']:
                         final_dest = os.path.join(stor_path, storage_name, 'all_dir')
@@ -89,32 +89,32 @@ def main():
     kpi_evidence = [
     #Chrome 
     (r'Dump/data/data/com.android.chrome/app_chrome/Default',
-     ['History', 'Web Data', 'Top Sites', 'Cookies'],
-     'chrome_browser'),
+    ['History', 'Web Data', 'Top Sites', 'Cookies'],
+    'chrome_browser'),
 
     (r'Dump/data/misc/bluedroid',
-     ['bt_config.bak', 'bt_config.conf', 'interop_database_dynamic.conf'],
-     'bluetooth'),
+    ['bt_config.bak', 'bt_config.conf', 'interop_database_dynamic.conf'],
+    'bluetooth'),
 
     (r'Dump/data/system',
-     ['netpolicy.xml'],
-     'wifi'),
+    ['netpolicy.xml'],
+    'wifi'),
 
     (r'Dump/data/misc/apexdata/com.android.wifi',
-     ['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml'],
-     'wifi_std'),
+    ['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml'],
+    'wifi_std'),
 
     (r'Dump/data/misc_ce/0/apexdata/com.android.wifi',
-     ['WifiConfigStore.xml', 'WifiConfigStoreNetworkSuggestions.xml'],
-     'wifi_ce'),
+    ['WifiConfigStore.xml', 'WifiConfigStoreNetworkSuggestions.xml'],
+    'wifi_ce'),
 
     (r'Dump/data/data/com.snapchat.android/databases',
-     ['arroyo.db', 'main.db'],
-     'snapchat'),
+    ['arroyo.db', 'main.db'],
+    'snapchat'),
 
     (r'Dump/data/data/com.snapchat.android/shared_prefs',
-     ['LoginSignupStore'],
-     'snapchat'),
+    ['LoginSignupStore'],
+    'snapchat'),
 
     # (r'Dump/data/data/com.snapchat.android/files/native_content_manager',
     #  ['all_dir'],

@@ -85,10 +85,10 @@ kpi_evidence = [
     (r'Dump/data/data/com.snapchat.android/shared_prefs',
     ['LoginSignupStore.xml'],
     'snapchat'),
-
-    (r'Dump/data/data/com.snapchat.android/files/native_content_manager',
-    ['all_dir'],
-    'snapchat'),
+    #Broken, need to fix
+    # (r'Dump/data/data/com.snapchat.android/files/native_content_manager/com.snap.file_manager',
+    # ['all_dir'],
+    # 'snapchat'),
 
     #Mobile Device Info
     (r'Dump/data/system/users/0',

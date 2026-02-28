@@ -34,7 +34,7 @@ kpi_evidence = [
     
     (r'Dump/data/data/com.discord/app_webview/Default',
     ['Cookies'],
-    'discord'),
+    'discord'), 
 
     #WhatsApp
     (r'Dump/data/media/0/Android/media/com.whatsapp/WhatsApp/Databases',

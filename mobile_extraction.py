@@ -47,6 +47,9 @@ def main():
     execute_command([adb_path, 'shell', "su -c ls /storage/emulated/0"])
     logging.info('Sending Script')
     execute_command([adb_path, 'push', f"{script_location} /data/local/tmp/script.sh"])
+    # logging.info('Converting Script to Unix Format')
+    # execute_command([adb_path, 'shell', "su -c dos2unix /data/local/tmp/script.sh"])
+    # logging.info('Conversion Complete')
     logging.info('Executing Script')
     execute_command([adb_path, 'shell', "su -c sh /data/local/tmp/script.sh"])
     logging.info('Script Finshed')
@@ -69,3 +72,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+#Makes sure to convert bash script to unix format on transfer

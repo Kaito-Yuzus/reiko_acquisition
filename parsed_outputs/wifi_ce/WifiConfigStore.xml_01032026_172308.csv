@@ -1,6 +1,0 @@
-Element,Name,Value
-WifiConfigStoreData,Version,3
-ImsiPrivacyProtectionExemptionMap,CarrierExemptionMap,Empty
-FeatureState,IsActive,false
-FeatureState,IsOnboarded,false
-FeatureState,NotificationsShown,0

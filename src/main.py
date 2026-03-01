@@ -129,9 +129,8 @@ def main():
     root = tk.Tk()
     root.withdraw()
     extraction_path = filedialog.askopenfilename()
-    root_directory = os.path.dirname(__file__)
     timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')
-    transcript_path = os.path.join(root_directory, 'transcripts')
+    transcript_path = os.path.join('reiko_acquisition', 'transcripts')
     os.makedirs(transcript_path, exist_ok=True)
     log_file = os.path.join(transcript_path, f'reiko_acquisition_{timestamp}.log')
     
@@ -348,7 +347,7 @@ def main():
 
     #Whatsapp
     def whatsapp_export_sql(db_name, db_tables, db_location, db_parsed_path, log_path):
-            wadb_path = fr'{root_directory}\evidence_storage\whatsapp'
+            wadb_path = os.path.join('reiko_acquisition', 'evidence_storage', 'whatsapp')
             encrypted_wadb_exists = os.path.isfile(fr'{wadb_path}\msgstore.db.crypt14')
             
             if os.path.isfile(os.path.join(wadb_path, 'msgstore.db')):
@@ -470,10 +469,9 @@ for handler in logging.getLogger().handlers[:]:
     logging.getLogger().removeHandler(handler)
 
     # Cleanup
-    root_directory = os.path.dirname(__file__)
-    evidence_storage = os.path.join(root_directory, 'evidence_storage')
-    transcript_path = os.path.join(root_directory, 'transcripts')
-    parsed_path = os.path.join(root_directory, 'parsed_outputs')
+    evidence_storage = os.path.join('reiko_acquisition', 'evidence_storage')
+    transcript_path = os.path.join('reiko_acquisition', 'transcripts')
+    parsed_path = os.path.join('reiko_acquisition', 'parsed_outputs')
     
 
     rm_folder = input('y or n for file deletion\n')

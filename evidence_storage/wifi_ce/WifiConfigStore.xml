@@ -8,17 +8,13 @@
 <PasspointConfigData>
 <ProviderList />
 </PasspointConfigData>
-<OpenNetworkNotifierBlacklistConfigData>
-<set name="SSIDSet">
-<string>Linksys05131-guest</string>
-</set>
-</OpenNetworkNotifierBlacklistConfigData>
+<OpenNetworkNotifierBlacklistConfigData />
 <NetworkRequestMap />
 <WakeupConfigStoreData>
 <FeatureState>
-<boolean name="IsActive" value="true" />
+<boolean name="IsActive" value="false" />
 <boolean name="IsOnboarded" value="false" />
-<int name="NotificationsShown" value="1" />
+<int name="NotificationsShown" value="0" />
 </FeatureState>
 </WakeupConfigStoreData>
 </WifiConfigStoreData>

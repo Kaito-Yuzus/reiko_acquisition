@@ -25,7 +25,6 @@ def main():
     root = tk.Tk()
     root.withdraw()
     extraction_path = filedialog.askdirectory()
-    root_directory = os.path.dirname(__file__)
 
     def execute_command(command):
         cmd_str = ' '.join(command)
@@ -38,8 +37,8 @@ def main():
         process.wait()
         logging.info(f'Command Complete')
 
-    adb_path = r'.\reiko_acquisition\adb\adb.exe'
-    script_location = os.path.join(root_directory, 'script.sh')
+    adb_path = r'.\reiko_acquisition\bin\adb\adb.exe'
+    script_location = r'reiko_acquisition\bin\script.sh'
 
     logging.info('Creating target directory')
     execute_command([adb_path, 'shell', "su -c mkdir /storage/emulated/0/target"])

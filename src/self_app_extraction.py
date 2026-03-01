@@ -26,8 +26,8 @@ class evidence_grabber:
             logging.StreamHandler()
         ]
         )
-        root_directory = os.path.dirname(__file__)
-        stor_path = os.path.join(root_directory, 'evidence_storage')
+
+        stor_path = os.path.join('./reiko_acquisition/', 'evidence_storage')
 
         if os.path.exists(stor_path) == False:
             os.mkdir(stor_path)

@@ -2,10 +2,10 @@
 <WifiConfigStoreData>
 <int name="Version" value="3" />
 <SoftAp>
-<string name="WifiSsid">&quot;Pixel_5115&quot;</string>
+<string name="WifiSsid">&quot;AndroidAP_7707&quot;</string>
 <boolean name="HiddenSSID" value="false" />
-<int name="SecurityType" value="2" />
-<string name="Passphrase">mne4yytutjejdup</string>
+<int name="SecurityType" value="1" />
+<string name="Passphrase">6u57ruaicqcng7a</string>
 <int name="MaxNumberOfClients" value="0" />
 <boolean name="ClientControlByUser" value="false" />
 <boolean name="AutoShutdownEnabled" value="true" />
@@ -25,6 +25,8 @@
 <long name="BridgedModeOpportunisticShutdownTimeoutMillis" value="-1" />
 <VendorElements />
 <boolean name="80211beEnabled" value="true" />
-<string name="PersistentRandomizedMacAddress">42:b8:6a:4a:11:b3</string>
+<string name="PersistentRandomizedMacAddress">4e:b6:9f:5f:10:72</string>
+<int name="MaxChannelWidth" value="-1" />
+<boolean name="ClientIsolation" value="false" />
 </SoftAp>
 </WifiConfigStoreData>

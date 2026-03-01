@@ -27,12 +27,11 @@ class basic_xml_parser:
         )
 
         for xml_file in self.xml_name:
-            root_directory = os.path.dirname(__file__)
-            xml_path = os.path.join(root_directory, 'evidence_storage', self.xml_location, xml_file)
+            xml_path = os.path.join('reiko_acquisition', 'evidence_storage', self.xml_location, xml_file)
             xml_exists = os.path.isfile(xml_path)
 
             if xml_exists == True: 
-                output_path = os.path.join(root_directory, 'parsed_outputs', self.xml_parsed_path)
+                output_path = os.path.join('reiko_acquisition', 'parsed_outputs', self.xml_parsed_path)
                 os.makedirs(output_path, exist_ok=True)
                 tree = ET.parse(xml_path) 
                 root = tree.getroot()
@@ -107,9 +106,9 @@ def main():
     logging.info('[Parsing XML Files]\n')
 
     export_xml(
-        xml_name= ['CacheStore.xml', 'ClientInfoCache.xml', 'FastCacheStore.xml'],
-        xml_location='discord', 
-        xml_parsed_path='discord',
+        xml_name= ['WifiConfigStore.xml', 'WifiConfigStoreNetworkSuggestions.xml'],
+        xml_location='wifi_ce', 
+        xml_parsed_path='wifi_ce',
         log_path=log_file,
     )
 

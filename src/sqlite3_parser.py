@@ -29,13 +29,12 @@ class basic_db_parser:
             ]
         )
 
-        root_directory = os.path.dirname(__file__)
-        db_path = fr'{root_directory}\evidence_storage\{self.db_location}\{self.db_name}'
+        db_path = os.path.join('reiko_acquisition', 'evidence_storage', self.db_location, self.db_name)
         db_exists = os.path.isfile(db_path)
         
         if db_exists == True:
 
-            output_path = os.path.join(root_directory, 'parsed_outputs', self.db_parsed_path)
+            output_path = os.path.join('reiko_acquisition', 'parsed_outputs', self.db_parsed_path)
             os.makedirs(output_path, exist_ok=True)
 
             conn = sqlite3.connect(db_path)
@@ -178,10 +177,11 @@ def main():
         'whatsapp',
         'whatsapp'), 
 
-    ('Web gmm_storage.db',
-        ['gmm_storage_table'],
-        'whatsapp',
-        'whatsapp'),         
+    ('History',
+        ['urls', 'visits'],
+        'chrome_browser',
+        'chrome_browser'),         
+        
     ]
     
     for database, tables, location, parsed_path in google_maps_evidence:

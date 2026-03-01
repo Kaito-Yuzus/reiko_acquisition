@@ -1,7 +1,6 @@
 Element,Name,Value
 WifiConfigStoreData,Version,3
 ImsiPrivacyProtectionExemptionMap,CarrierExemptionMap,Empty
-OpenNetworkNotifierBlacklistConfigData,SSIDSet,
-FeatureState,IsActive,true
+FeatureState,IsActive,false
 FeatureState,IsOnboarded,false
-FeatureState,NotificationsShown,1
+FeatureState,NotificationsShown,0

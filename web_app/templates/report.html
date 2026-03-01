@@ -3,27 +3,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Folder Report</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #4CAF50; color: white; }
-        tr:nth-child(even) { background-color: #f2f2f2; }
-        tr:hover { background-color: #ddd; }
-    </style>
+    <title>Reiko Acquisition</title>
+<style>
+body {
+    font-family: Arial, sans-serif; 
+    padding: 20px; 
+    background-color: #95989d;
+}
+
+table {
+    border-collapse: collapse; 
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #000000; 
+    padding: 8px; 
+    text-align: left;
+}
+
+th {
+    background-color: #5f3e94; 
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #b5b5b5;
+}
+
+tr:hover {
+    background-color: #5fa159;
+}
+
+th.sortable {
+    cursor: pointer;
+    user-select: none; /* prevent text selection */
+}
+
+.sort-arrow {
+    font-size: 0.8em;
+    margin-left: 5px;
+} /* <- fixed missing brace */
+
+.header-box {
+    border: 3px solid #5f3e94;   /* Purple border matching table header */
+    background-color: #e0d7f0;   /* Light purple background */
+    padding: 20px 30px;
+    display: inline-block;
+    border-radius: 10px;          /* Rounded corners */
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.3); /* subtle shadow */
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+td.size-column {
+    width: 150px;        /* adjust width as needed */
+    white-space: nowrap;      /* keep in one line */
+    overflow: hidden;         /* hide overflow */
+    text-overflow: ellipsis;  /* show "..." for long text */
+}
+table {
+    border-collapse: collapse;
+    width: 50%;  /* shrink width to 70% of page */
+    margin: 0; /* center it */
+    
+}
+</style>
 </head>
 <body>
     <main>
-        {% for location in locations%}
-        <p><a href="{{ url_for('run_script') }}?file={{ location | urlencode }}" target="_blank">{{ location }}</a></p>
-        {% endfor %}
     </main>
-    <h1>Folder Report</h1>
+    <div class="header-box">Reiko Acquisition</div>
+    <div class="header-box"><a href="https://github.com/Kaito-Yuzus" target="_blank">GitHub</a></div>
     <table>
         <thead>
             <tr>
-                <th>Phase</th>
+                <th class="sortable">Phase <span class="sort-arrow"></span></th>
                 <th>Folder</th>
                 <th>File</th>
                 <th>Location</th>
@@ -34,11 +90,53 @@
             <tr>
                 <td>{{ item.phase }}</td>
                 <td>{{ item.folder }}</td>
-                <td>{{ item.file }}</td>
-                <td>{{ item.location }}</td>
+                <td class="size-column">{{ item.file }}</td>
+                <td class="size-column">
+                    <form action="{{ url_for('run_script') }}" method="get" target="hidden_frame" style="display:inline;">
+                        <input type="hidden" name="file" value="{{ item.location }}">
+                        <a href="#" onclick="this.parentNode.submit(); return false;">{{ item.location }}</a>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    <iframe name="hidden_frame" style="display:none;"></iframe>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const table = document.querySelector("table tbody");
+    const headers = document.querySelectorAll("th.sortable");
+    let sortDir = {}; // store sort direction per column
+
+    headers.forEach((th, index) => {
+        th.addEventListener("click", function() {
+            const rows = Array.from(table.rows);
+            const asc = !sortDir[index]; // toggle sort direction
+            sortDir[index] = asc;
+
+            // Sort rows
+            rows.sort((a, b) => {
+                let aText = a.cells[index].textContent.trim();
+                let bText = b.cells[index].textContent.trim();
+
+                let aNum = parseFloat(aText);
+                let bNum = parseFloat(bText);
+                if(!isNaN(aNum) && !isNaN(bNum)) {
+                    return asc ? aNum - bNum : bNum - aNum;
+                }
+                return asc ? aText.localeCompare(bText) : bText.localeCompare(aText);
+            });
+
+            rows.forEach(row => table.appendChild(row));
+
+            // Update arrow indicators
+            headers.forEach(h => h.querySelector(".sort-arrow").textContent = ""); // reset all arrows
+            th.querySelector(".sort-arrow").textContent = asc ? "▲" : "▼"; // set current arrow
+        });
+    });
+});
+</script>
 </body>
 </html>
+
+

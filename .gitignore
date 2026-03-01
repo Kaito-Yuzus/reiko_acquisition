@@ -1,8 +1,0 @@
-venv
-.venv
-.vscode
-.gitignore
-__pycache__
-evidence_storage
-parsed_outputs
-transcripts

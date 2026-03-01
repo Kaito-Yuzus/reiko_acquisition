@@ -3,23 +3,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Files Reports</title>
+    <title>Folder Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #4CAF50; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        tr:hover { background-color: #ddd; }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Counting Numbers</h1>
-    </header>
-
     <main>
         {% for location in locations%}
         <p><a href="{{ url_for('run_script') }}?file={{ location | urlencode }}" target="_blank">{{ location }}</a></p>
         {% endfor %}
-        
     </main>
-
-    <footer>
-        <p>&copy; {{ year }}</p>
-    </footer>
+    <h1>Folder Report</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Phase</th>
+                <th>Folder</th>
+                <th>File</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in file_data %}
+            <tr>
+                <td>{{ item.phase }}</td>
+                <td>{{ item.folder }}</td>
+                <td>{{ item.file }}</td>
+                <td>{{ item.location }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

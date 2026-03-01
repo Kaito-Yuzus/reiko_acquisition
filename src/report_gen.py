@@ -6,7 +6,15 @@ from datetime import datetime
 
 
 parent_folder = r'C:\Users\Stinky\Desktop\final_project\reiko_acquisition\parsed_outputs'
-stuff = os.walk(parent_folder) #save
+file_data = []
+for folder, subfolders, files in os.walk(parent_folder):
+    for file in files:
+        file_data.append({
+            "phase": "parsed",
+            "folder": os.path.basename(folder),
+            "file": file,
+            "location": folder
+        })
 
 locations = [
     r'C:\Users\Stinky\Desktop\final_project\reiko_acquisition\misc\requirements.txt', 
@@ -18,7 +26,7 @@ app = Flask(__name__, template_folder=r'C:\Users\Stinky\Desktop\final_project\re
 
 @app.route("/")
 def report():
-    return render_template('report.html', locations=locations)
+    return render_template('report.html', locations=locations, file_data=file_data)
 
 @app.route('/run-script')
 def run_script():

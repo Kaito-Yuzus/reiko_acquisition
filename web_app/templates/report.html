@@ -12,10 +12,10 @@
     </header>
 
     <main>
-        {% for title in titles%}
-            <h1>{{ title }}</h1>
+        {% for location in locations%}
+        <p><a href="{{ url_for('run_script') }}?file={{ location | urlencode }}" target="_blank">{{ location }}</a></p>
         {% endfor %}
-        <a href="file:///C:\Users\Stinky\Desktop\final_project\reiko_acquisition\requirements.txt" target="_blank">Open Text File</a>
+        
     </main>
 
     <footer>

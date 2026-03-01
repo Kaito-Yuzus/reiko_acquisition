@@ -1,27 +1,52 @@
-
-
 import os
+import subprocess
 from jinja2 import *
+from flask import Flask, render_template, redirect, request, url_for
+from datetime import datetime
+
 
 parent_folder = r'C:\Users\Stinky\Desktop\final_project\reiko_acquisition\parsed_outputs'
-stuff = os.walk(parent_folder)
+stuff = os.walk(parent_folder) #save
 
-# for root, adir, file  in stuff: 
-#     print(f'{file}')
-#     print(f'\n{os.path.basename(root)}')
-
-
-titles = [
-    'gaming', 
-    'reading',
-    'cooking'
+locations = [
+    r'C:\Users\Stinky\Desktop\final_project\reiko_acquisition\misc\requirements.txt', 
+    r'C:\Users\Stinky\Desktop\final_project\reiko_acquisition\web_app\flask_start.py',
+    r'C:\Users\Stinky\Desktop\final_project\reiko_acquisition\.gitignore'
 ]
 
-env = Environment(loader=FileSystemLoader(r'reiko_acquisition\templates'))
-template = env.get_template('report.html')
+app = Flask(__name__, template_folder=r'C:\Users\Stinky\Desktop\final_project\reiko_acquisition\web_app\templates')
 
-output = template.render(titles=titles)
+@app.route("/")
+def report():
+    return render_template('report.html', locations=locations)
 
-with open('report_output.html', 'w') as f:
-    f.write(output)
+@app.route('/run-script')
+def run_script():
+    file_to_run = request.args.get('file')
+    try:
+        batch_path = r'reiko_acquisition\web_app\reiko_explorer.bat'
+        # file = r'C:\Users\Stinky\Desktop\final_project\reiko_acquisition\web_app\flask_start.py'
+        subprocess.Popen([batch_path, file_to_run], shell=True)
+        return "Script started!"
+    except Exception as e:
+        return f"Error: {e}"
+
+
+
+
+
+
+
+
+
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
+    
+
 

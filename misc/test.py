@@ -1,3 +1,7 @@
-import os
+env = Environment(loader=FileSystemLoader(r'reiko_acquisition\web_app\templates'))
+template = env.get_template('report.html')
 
-os.mkdir('./reiko_acquisition/hello')
+output = template.render(locations=locations)
+
+with open(r'report_output.html', 'w') as f:
+    f.write(output)

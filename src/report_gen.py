@@ -6,6 +6,7 @@ from datetime import datetime
 import webbrowser
 from threading import Timer
 
+
 phase_list = [
     ('parsed',
     r'reiko_acquisition\parsed_outputs'),
@@ -24,7 +25,7 @@ for phase, location in phase_list:
                 "location": location
             })
 
-app = Flask(__name__, template_folder=r'C:\Users\Stinky\Desktop\final_project\reiko_acquisition\web_app\templates')
+app = Flask(__name__, template_folder=r'C:\Users\IKS.LAPTOP-AMM5L6TN\Desktop\final_project\reiko_acquisition\web_app\templates')
 
 @app.route("/")
 def report():
@@ -40,6 +41,7 @@ def run_script():
         return "Script started!"
     except Exception as e:
         return f"Error: {e}"
+
 
 if __name__ == '__main__':
     port = 5000

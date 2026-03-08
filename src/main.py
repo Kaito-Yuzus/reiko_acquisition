@@ -12,7 +12,13 @@ import mobile_extraction
 import report_gen
 
 
-#Mobile extraction path
+banner_logo = r'''
+   ___      _ __            ___                _     _ __  _         
+  / _ \___ (_) /_____      / _ |_______ ___ __(_)__ (_) /_(_)__  ___ 
+ / , _/ -_) /  '_/ _ \    / __ / __/ _ `/ // / (_-</ / __/ / _ \/ _ \
+/_/|_|\__/_/_/\_\\___/   /_/ |_\__/\_, /\_,_/_/___/_/\__/_/\___/_//_/
+                                    /_/                              
+'''
 
 ###Collection Items###
 kpi_evidence = [
@@ -466,6 +472,8 @@ def main():
         4. Render Interactive HTML Flask Report
         5. Exit Program
         '''
+
+        print(banner_logo)
         print(menu_text)
         choice = input('Choose from the following options\n')
         

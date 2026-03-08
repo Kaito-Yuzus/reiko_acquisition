@@ -22,9 +22,9 @@ def rend_report():
                     "phase": phase,
                     "folder": os.path.basename(folder),
                     "file": file,
-                    "location": location
+                    "location": folder
                 })
-
+    #Make sure to change in the future
     app = Flask(__name__, template_folder=r'C:\Users\IKS.LAPTOP-AMM5L6TN\Desktop\final_project\reiko_acquisition\web_app\templates')
 
     @app.route("/")

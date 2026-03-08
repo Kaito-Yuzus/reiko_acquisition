@@ -10,6 +10,8 @@ import xml_parser
 from tqdm import tqdm
 import mobile_extraction
 import report_gen
+import sys 
+
 
 
 banner_logo = r'''
@@ -349,6 +351,8 @@ def main():
 
             #Whatsapp
             def whatsapp_export_sql(db_name, db_tables, db_location, db_parsed_path, log_path):
+                    base_dir = os.path.dirname(os.path.abspath(sys.executable))
+                    python_exe = os.path.join(base_dir, r'bin\wadecrypt.exe')
                     wadb_path = os.path.join('reiko_acquisition', 'evidence_storage', 'whatsapp')
                     encrypted_wadb_exists = os.path.isfile(fr'{wadb_path}\msgstore.db.crypt14')
                     
@@ -357,7 +361,7 @@ def main():
                     else:
                         if encrypted_wadb_exists == True:
                             logging.info("msgstore.db.crypt14 Is Being Decrypted") 
-                            execute_command(['wadecrypt.exe', fr'{wadb_path}\key', fr'{wadb_path}\msgstore.db.crypt14', fr'{wadb_path}\msgstore.db'])
+                            execute_command([python_exe, fr'{wadb_path}\key', fr'{wadb_path}\msgstore.db.crypt14', fr'{wadb_path}\msgstore.db'])
 
                     for table in db_tables:
                         whatsapp = sqlite3_parser.basic_db_parser(db_name, table, db_location, db_parsed_path, log_path)
@@ -542,10 +546,10 @@ def main():
                     if os.path.exists(transcript_path): 
                         shutil.rmtree(transcript_path)
                     print('Files were deleted\n')
-                    exit()
+                    sys.exit()
                 else: 
                     print('Files were not deleted and closing\n')
-                    exit()
+                    sys.exit()
         else: 
             print('Choose a valid input')
             if os.name == 'nt':

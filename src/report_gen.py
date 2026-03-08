@@ -4,7 +4,7 @@ from jinja2 import *
 from flask import Flask, render_template, redirect, request, url_for
 from datetime import datetime
 import webbrowser
-from threading import Timer
+from threading import Timer, Thread
 
 def rend_report():
     phase_list = [
@@ -36,8 +36,6 @@ def rend_report():
         file_to_run = request.args.get('file')
         try:
             batch_path = r'reiko_acquisition\web_app\reiko_explorer.bat'
-            # file = r'C:\Users\Stinky\Desktop\final_project\reiko_acquisition\web_app\flask_start.py'
-            #File explorer link
             subprocess.Popen([batch_path, file_to_run], shell=True)
             return "Script started!"
         except Exception as e:
@@ -45,12 +43,18 @@ def rend_report():
         
     port = 5000
     url = f"http://127.0.0.1:{port}/"
-    Timer(1, lambda: webbrowser.open(url)).start()  # 1-second to start flask app need before to open site
-    # Start Flask
-    #Debugs Makes it run twice with previous code
-    #Use reloader restarts the server when the code is saved
-    #debugger runs the site in the browser and shows errors in the terminal
-    app.run(port=port, debug=False, use_reloader=False)
+    def open_browser():
+        webbrowser.open(url)
+
+    Thread(target=open_browser).start()
+
+    def run_flask():
+        app.run(port=port, debug=False, use_reloader=False)
+
+    flask_thread = Thread(target=run_flask)
+    flask_thread.daemon = True  
+    flask_thread.start()
+
 
 
 if __name__ == '__main__':

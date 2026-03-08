@@ -8,6 +8,8 @@ import self_app_extraction
 import sqlite3_parser
 import xml_parser
 from tqdm import tqdm
+import mobile_extraction
+import report_gen
 
 
 #Mobile extraction path
@@ -461,13 +463,25 @@ def main():
         1. Acquire Rooted Mobile Device
         2. Extract Files from Created Dataset
         3. Parse All Collected Files from Extracted Files
-        4. Exit Program
+        4. Render Interactive HTML Flask Report
+        5. Exit Program
         '''
         print(menu_text)
         choice = input('Choose from the following options\n')
         
         if choice == '1':
             print('Option 1 Selected')
+            acquire_warning = input('This can take a while, are you sure? y or n\n')
+            if acquire_warning == 'y':
+                mobile_extraction.mobile_acquire()
+                if os.name == 'nt':
+                    os.system('cls')
+            else: 
+                if os.name == 'nt':
+                    os.system('cls')
+                continue
+
+
         elif choice == '2':
             print('Option 2 Selected')
             from tkinter import filedialog
@@ -484,12 +498,22 @@ def main():
             )
             if os.name == 'nt':
                 os.system('cls')
+
+
         elif choice == '3':
             print('Option 3 Selected')
             evidence_parsing()
             if os.name == 'nt':
                 os.system('cls')
-        elif choice == '4':
+
+        elif choice == '4':        
+            print('Rendering Report')
+            report_gen.rend_report()
+            if os.name == 'nt':
+                os.system('cls')
+
+
+        elif choice == '5':
             print('Exiting Program')
             logging.info("Closing Transcript")
             for handler in logging.getLogger().handlers[:]:

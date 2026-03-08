@@ -1,0 +1,48 @@
+2026-03-08 15:50:58,920 - INFO - Device connected
+2026-03-08 15:50:58,929 - INFO - Creating target directory
+2026-03-08 15:50:58,929 - INFO - Executing [.\reiko_acquisition\bin\adb\adb.exe shell su -c mkdir /storage/emulated/0/target]
+2026-03-08 15:51:00,624 - INFO - Command Complete
+2026-03-08 15:51:00,629 - INFO - Directory Created
+2026-03-08 15:51:00,629 - INFO - Executing [.\reiko_acquisition\bin\adb\adb.exe shell su -c ls /storage/emulated/0]
+2026-03-08 15:51:01,562 - INFO - Alarms
+2026-03-08 15:51:01,562 - INFO - Android
+2026-03-08 15:51:01,562 - INFO - Audiobooks
+2026-03-08 15:51:01,562 - INFO - DCIM
+2026-03-08 15:51:01,562 - INFO - Documents
+2026-03-08 15:51:01,562 - INFO - Download
+2026-03-08 15:51:01,562 - INFO - Movies
+2026-03-08 15:51:01,562 - INFO - Music
+2026-03-08 15:51:01,562 - INFO - Notifications
+2026-03-08 15:51:01,562 - INFO - Pictures
+2026-03-08 15:51:01,562 - INFO - Podcasts
+2026-03-08 15:51:01,562 - INFO - Recordings
+2026-03-08 15:51:01,562 - INFO - Ringtones
+2026-03-08 15:51:01,562 - INFO - target
+2026-03-08 15:51:01,614 - INFO - Command Complete
+2026-03-08 15:51:01,614 - INFO - Sending Script
+2026-03-08 15:51:01,614 - INFO - Executing [.\reiko_acquisition\bin\adb\adb.exe push reiko_acquisition\bin\script.sh /data/local/tmp/script.sh]
+2026-03-08 15:51:02,562 - INFO - reiko_acquisition\bin\script.sh: 1 file pushed, 0 skipped. 0.1 MB/s (103 bytes in 0.002s)
+2026-03-08 15:51:02,662 - INFO - Command Complete
+2026-03-08 15:51:02,662 - INFO - Converting Script for Device
+2026-03-08 15:51:02,662 - INFO - Executing [.\reiko_acquisition\bin\adb\adb.exe shell su -c dos2unix /data/local/tmp/script.sh]
+2026-03-08 15:51:03,579 - INFO - Command Complete
+2026-03-08 15:51:03,579 - INFO - Executing Script
+2026-03-08 15:51:03,579 - INFO - Executing [.\reiko_acquisition\bin\adb\adb.exe shell su -c sh /data/local/tmp/script.sh]
+2026-03-08 15:51:04,402 - INFO - removing leading '/' from member names
+2026-03-08 15:56:51,839 - INFO - tar: unknown file type '140000'
+2026-03-08 15:56:53,135 - INFO - tar: unknown file type '140000'
+2026-03-08 16:00:42,062 - INFO - tar: had errors
+2026-03-08 16:00:42,154 - INFO - Command Complete
+2026-03-08 16:00:42,160 - INFO - Script Finshed
+2026-03-08 16:00:42,160 - INFO - Transferring extraction to examiner machine
+2026-03-08 16:00:42,161 - INFO - Executing [.\reiko_acquisition\bin\adb\adb.exe pull sdcard/target/extraction.tar.gz C:/Users/IKS.LAPTOP-AMM5L6TN/Desktop/output/backup]
+2026-03-08 16:02:55,983 - INFO - sdcard/target/extraction.tar.gz: 1 file pulled, 0 skipped. 31.2 MB/s (4358790317 bytes in 133.033s)
+2026-03-08 16:02:56,083 - INFO - Command Complete
+2026-03-08 16:02:56,083 - INFO - Transfer complete
+2026-03-08 16:02:56,083 - INFO - Would you like to delete the created path y or n
+2026-03-08 16:04:17,307 - INFO - y
+2026-03-08 16:04:17,307 - INFO - Removing Leftovers
+2026-03-08 16:04:17,307 - INFO - Executing [.\reiko_acquisition\bin\adb\adb.exe shell su -c rm -r /storage/emulated/0/target]
+2026-03-08 16:04:18,530 - INFO - Command Complete
+2026-03-08 16:04:18,531 - INFO - Executing [.\reiko_acquisition\bin\adb\adb.exe shell su -c rm /data/local/tmp/script.sh]
+2026-03-08 16:04:19,454 - INFO - Command Complete

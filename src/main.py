@@ -473,6 +473,7 @@ def main():
             from tkinter import filedialog
             root = tk.Tk()
             root.withdraw()
+            root.attributes('-topmost', True)
             extraction_path = filedialog.askopenfilename()
             root.destroy()
             logging.info(f'Collecting Evidence Files From {extraction_path}')

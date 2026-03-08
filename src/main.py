@@ -1,6 +1,5 @@
 import shutil
 import tkinter as tk
-from tkinter import filedialog
 import os
 import datetime
 import logging
@@ -8,6 +7,8 @@ import subprocess
 import self_app_extraction
 import sqlite3_parser
 import xml_parser
+from tqdm import tqdm
+
 
 #Mobile extraction path
 
@@ -126,9 +127,6 @@ kpi_evidence = [
 ]
 
 def main():
-    root = tk.Tk()
-    root.withdraw()
-    extraction_path = filedialog.askopenfilename()
     timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')
     transcript_path = os.path.join('reiko_acquisition', 'transcripts')
     os.makedirs(transcript_path, exist_ok=True)
@@ -139,7 +137,7 @@ def main():
         format='%(asctime)s - %(levelname)s - %(message)s',
         handlers= [
             logging.FileHandler(log_file),
-            logging.StreamHandler()
+            #logging.StreamHandler()
         ]
     )
     def execute_command(command):
@@ -308,209 +306,224 @@ def main():
 ############################################ SQLite ############################################
 
     def evidence_parsing():
-        #Chrome
-        def chrome_export_sql(db_name, db_tables, db_location, db_parsed_path, log_path): 
-            for table in db_tables:
-                chrome = sqlite3_parser.webrowser_csv(db_name, table, db_location, db_parsed_path, log_path)
-                chrome.exporting_table()
-
-        for database, tables, location, parsed_path in chrome_browser_evidence_sql:
-            chrome_export_sql(
-                db_name = database,
-                db_tables = tables,
-                db_location = location,
-                db_parsed_path = parsed_path,
-                log_path = log_file
-            )
-
-        #Device_info
-        def device_info_export_sql(db_name, db_tables, db_location, db_parsed_path, log_path): 
-            for table in db_tables:
-                device_info = sqlite3_parser.basic_db_parser(db_name, table, db_location, db_parsed_path, log_path)
-                device_info.exporting_table()
-
-        for database, tables, location, parsed_path in device_info__evidence_sql:
-            device_info_export_sql(
-                db_name = database,
-                db_tables = tables,
-                db_location = location,
-                db_parsed_path = parsed_path,
-                log_path = log_file
-            )
-
-        
-
-
-        #Whatsapp
-        def whatsapp_export_sql(db_name, db_tables, db_location, db_parsed_path, log_path):
-                wadb_path = os.path.join('reiko_acquisition', 'evidence_storage', 'whatsapp')
-                encrypted_wadb_exists = os.path.isfile(fr'{wadb_path}\msgstore.db.crypt14')
-                
-                if os.path.isfile(os.path.join(wadb_path, 'msgstore.db')):
-                    logging.info("msgstore.db.crypt14 Is Already Decrypted")
-                else:
-                    if encrypted_wadb_exists == True:
-                        logging.info("msgstore.db.crypt14 Is Being Decrypted") 
-                        execute_command(['wadecrypt.exe', fr'{wadb_path}\key', fr'{wadb_path}\msgstore.db.crypt14', fr'{wadb_path}\msgstore.db'])
-
+        with tqdm(total=8, desc="Main") as pbar:
+            #Chrome
+            def chrome_export_sql(db_name, db_tables, db_location, db_parsed_path, log_path): 
                 for table in db_tables:
-                    whatsapp = sqlite3_parser.basic_db_parser(db_name, table, db_location, db_parsed_path, log_path)
-                    whatsapp.exporting_table()
-        
-        for database, tables, location, parsed_path in whatsapp_evidence_sql:
-            whatsapp_export_sql(
-                db_name = database,
-                db_tables = tables,
-                db_location = location,
-                db_parsed_path = parsed_path,
-                log_path = log_file
-            )
+                    chrome = sqlite3_parser.webrowser_csv(db_name, table, db_location, db_parsed_path, log_path)
+                    chrome.exporting_table()
 
-        #Discord
-        def discord_export_sql(db_name, db_tables, db_location, db_parsed_path, log_path): 
-            for table in db_tables:
-                discord = sqlite3_parser.basic_db_parser(db_name, table, db_location, db_parsed_path, log_path)
-                discord.exporting_table()
+            for database, tables, location, parsed_path in chrome_browser_evidence_sql:
+                chrome_export_sql(
+                    db_name = database,
+                    db_tables = tables,
+                    db_location = location,
+                    db_parsed_path = parsed_path,
+                    log_path = log_file
+                )
+            pbar.update(1)
 
-        for database, tables, location, parsed_path in discord_evidence_sql:
-            discord_export_sql(
-                db_name = database,
-                db_tables = tables,
-                db_location = location,
-                db_parsed_path = parsed_path,
-                log_path = log_file
-            )
+            #Device_info
+            def device_info_export_sql(db_name, db_tables, db_location, db_parsed_path, log_path): 
+                for table in db_tables:
+                    device_info = sqlite3_parser.basic_db_parser(db_name, table, db_location, db_parsed_path, log_path)
+                    device_info.exporting_table()
+
+            for database, tables, location, parsed_path in device_info__evidence_sql:
+                device_info_export_sql(
+                    db_name = database,
+                    db_tables = tables,
+                    db_location = location,
+                    db_parsed_path = parsed_path,
+                    log_path = log_file
+                )
+                pbar.update(1)
+
+            #Whatsapp
+            def whatsapp_export_sql(db_name, db_tables, db_location, db_parsed_path, log_path):
+                    wadb_path = os.path.join('reiko_acquisition', 'evidence_storage', 'whatsapp')
+                    encrypted_wadb_exists = os.path.isfile(fr'{wadb_path}\msgstore.db.crypt14')
+                    
+                    if os.path.isfile(os.path.join(wadb_path, 'msgstore.db')):
+                        logging.info("msgstore.db.crypt14 Is Already Decrypted")
+                    else:
+                        if encrypted_wadb_exists == True:
+                            logging.info("msgstore.db.crypt14 Is Being Decrypted") 
+                            execute_command(['wadecrypt.exe', fr'{wadb_path}\key', fr'{wadb_path}\msgstore.db.crypt14', fr'{wadb_path}\msgstore.db'])
+
+                    for table in db_tables:
+                        whatsapp = sqlite3_parser.basic_db_parser(db_name, table, db_location, db_parsed_path, log_path)
+                        whatsapp.exporting_table()
+            
+            for database, tables, location, parsed_path in whatsapp_evidence_sql:
+                whatsapp_export_sql(
+                    db_name = database,
+                    db_tables = tables,
+                    db_location = location,
+                    db_parsed_path = parsed_path,
+                    log_path = log_file
+                )
+                pbar.update(1)
+
+            #Discord
+            def discord_export_sql(db_name, db_tables, db_location, db_parsed_path, log_path): 
+                for table in db_tables:
+                    discord = sqlite3_parser.basic_db_parser(db_name, table, db_location, db_parsed_path, log_path)
+                    discord.exporting_table()
+
+            for database, tables, location, parsed_path in discord_evidence_sql:
+                discord_export_sql(
+                    db_name = database,
+                    db_tables = tables,
+                    db_location = location,
+                    db_parsed_path = parsed_path,
+                    log_path = log_file
+                )
+                pbar.update(1)
 
 
-        
+        ############################################ XML ############################################
 
-    ############################################ XML ############################################
+            #Internet
+            def internet_export_xml(xml_name, xml_location, xml_parsed_path, log_path):
+                internet_files = xml_parser.basic_xml_parser(xml_name, xml_location, xml_parsed_path, log_path)
+                internet_files.xml_to_csv()
 
-        #Internet
-        def internet_export_xml(xml_name, xml_location, xml_parsed_path, log_path):
-            internet_files = xml_parser.basic_xml_parser(xml_name, xml_location, xml_parsed_path, log_path)
-            internet_files.xml_to_csv()
+            for xml_file, location, parsed_path in internet_evidence_xml: 
+                internet_export_xml(
+                    xml_name = xml_file,
+                    xml_location = location,
+                    xml_parsed_path= parsed_path, 
+                    log_path= log_file 
+                )
+                pbar.update(1)
 
-        for xml_file, location, parsed_path in internet_evidence_xml: 
-            internet_export_xml(
-                xml_name = xml_file,
-                xml_location = location,
-                xml_parsed_path= parsed_path, 
-                log_path= log_file 
-            )
+            #Telegram
+            def telegram_export_xml(xml_name, xml_location, xml_parsed_path, log_path):
+                telegram = xml_parser.basic_xml_parser(xml_name, xml_location, xml_parsed_path, log_path)
+                telegram.xml_to_csv()
 
-        #Telegram
-        def telegram_export_xml(xml_name, xml_location, xml_parsed_path, log_path):
-            telegram = xml_parser.basic_xml_parser(xml_name, xml_location, xml_parsed_path, log_path)
-            telegram.xml_to_csv()
+            for xml_file, location, parsed_path in telegram_evidence_xml: 
+                telegram_export_xml(
+                    xml_name = xml_file,
+                    xml_location = location,
+                    xml_parsed_path= parsed_path, 
+                    log_path= log_file 
+                )
+                pbar.update(1)
 
-        for xml_file, location, parsed_path in telegram_evidence_xml: 
-            telegram_export_xml(
-                xml_name = xml_file,
-                xml_location = location,
-                xml_parsed_path= parsed_path, 
-                log_path= log_file 
-            )
+            #Discord
+            def discord_export_xml(xml_name, xml_location, xml_parsed_path, log_path):
+                discord = xml_parser.basic_xml_parser(xml_name, xml_location, xml_parsed_path, log_path)
+                discord.xml_to_csv()
 
-        #Discord
-        def discord_export_xml(xml_name, xml_location, xml_parsed_path, log_path):
-            discord = xml_parser.basic_xml_parser(xml_name, xml_location, xml_parsed_path, log_path)
-            discord.xml_to_csv()
+            for xml_file, location, parsed_path in discord_evidence_xml: 
+                discord_export_xml(
+                    xml_name = xml_file,
+                    xml_location = location,
+                    xml_parsed_path= parsed_path, 
+                    log_path= log_file 
+                )
+                pbar.update(1)
 
-        for xml_file, location, parsed_path in discord_evidence_xml: 
-            discord_export_xml(
-                xml_name = xml_file,
-                xml_location = location,
-                xml_parsed_path= parsed_path, 
-                log_path= log_file 
-            )
+            #Snapchat
+            def snapchat_export_xml(xml_name, xml_location, xml_parsed_path, log_path):
+                snapchat = xml_parser.basic_xml_parser(xml_name, xml_location, xml_parsed_path, log_path)
+                snapchat.xml_to_csv()
 
-        #Snapchat
-        def snapchat_export_xml(xml_name, xml_location, xml_parsed_path, log_path):
-            snapchat = xml_parser.basic_xml_parser(xml_name, xml_location, xml_parsed_path, log_path)
-            snapchat.xml_to_csv()
+            for xml_file, location, parsed_path in snapchat_evidence_xml: 
+                snapchat_export_xml(
+                    xml_name = xml_file,
+                    xml_location = location,
+                    xml_parsed_path= parsed_path, 
+                    log_path= log_file 
+                )
+                pbar.update(1)
 
-        for xml_file, location, parsed_path in snapchat_evidence_xml: 
-            snapchat_export_xml(
-                xml_name = xml_file,
-                xml_location = location,
-                xml_parsed_path= parsed_path, 
-                log_path= log_file 
-            )
+            #Device_info
+            # def device_info_xml(xml_name, xml_location, xml_parsed_path, log_path):
+            #     Device_info = xml_parser.basic_xml_parser(xml_name, xml_location, xml_parsed_path, log_path)
+            #     Device_info.xml_to_csv()
 
-        #Device_info
-        # def device_info_xml(xml_name, xml_location, xml_parsed_path, log_path):
-        #     Device_info = xml_parser.basic_xml_parser(xml_name, xml_location, xml_parsed_path, log_path)
-        #     Device_info.xml_to_csv()
-
-        # for xml_file, location, parsed_path in device_info__evidence_xml: 
-        #     device_info_xml(
-        #         xml_name = xml_file,
-        #         xml_location = location,
-        #         xml_parsed_path= parsed_path, 
-        #         log_path= log_file 
-        #     )
+            # for xml_file, location, parsed_path in device_info__evidence_xml: 
+            #     device_info_xml(
+            #         xml_name = xml_file,
+            #         xml_location = location,
+            #         xml_parsed_path= parsed_path, 
+            #         log_path= log_file 
+            #     )
+            # pbar.update(1)
 
 
     ### Home Screen ###
-    
     while True:
         menu_text = '''
         1. Acquire Rooted Mobile Device
         2. Extract Files from Created Dataset
         3. Parse All Collected Files from Extracted Files
+        4. Exit Program
         '''
         print(menu_text)
-        choice = print('Choose from the following options')
+        choice = input('Choose from the following options\n')
         
         if choice == '1':
-            pass
-        elif choice == '1':
-            pass
-        elif choice == '1':
-            pass
+            print('Option 1 Selected')
+        elif choice == '2':
+            print('Option 2 Selected')
+            from tkinter import filedialog
+            root = tk.Tk()
+            root.withdraw()
+            extraction_path = filedialog.askopenfilename()
+            root.destroy()
+            logging.info(f'Collecting Evidence Files From {extraction_path}')
+            main_collection(
+                gz_target = extraction_path,
+                evidence_files = kpi_evidence,
+                log_path = log_file
+            )
+            if os.name == 'nt':
+                os.system('cls')
+        elif choice == '3':
+            print('Option 3 Selected')
+            evidence_parsing()
+            if os.name == 'nt':
+                os.system('cls')
+        elif choice == '4':
+            print('Exiting Program')
+            logging.info("Closing Transcript")
+            for handler in logging.getLogger().handlers[:]:
+                handler.close()
+                logging.getLogger().removeHandler(handler)
+
+                # Cleanup
+                evidence_storage = os.path.join('reiko_acquisition', 'evidence_storage')
+                transcript_path = os.path.join('reiko_acquisition', 'transcripts')
+                parsed_path = os.path.join('reiko_acquisition', 'parsed_outputs')
+                
+                rm_folder = input('Remove transcripts and parsed files? y or n\n')
+                if rm_folder == 'y':
+                    if os.path.exists(parsed_path): 
+                        shutil.rmtree(parsed_path)
+                    # if os.path.exists(evidence_storage):
+                    #     shutil.rmtree(evidence_storage)
+                    if os.path.exists(transcript_path): 
+                        shutil.rmtree(transcript_path)
+                    print('Files were deleted\n')
+                    exit()
+                else: 
+                    print('Files were not deleted and closing\n')
+                    exit()
         else: 
             print('Choose a valid input')
+            if os.name == 'nt':
+                os.system('cls')
         
 
 
 
-        logging.info(f'Collecting Evidence Files From {extraction_path}')
-        main_collection(
-            gz_target = extraction_path,
-            evidence_files = kpi_evidence,
-            log_path = log_file
-            )
-        evidence_parsing()
 
 
 
 if __name__ == '__main__':
     main()
-    logging.info("Closing Transcript")
 
-for handler in logging.getLogger().handlers[:]:
-    handler.close()
-    logging.getLogger().removeHandler(handler)
-
-    # Cleanup
-    evidence_storage = os.path.join('reiko_acquisition', 'evidence_storage')
-    transcript_path = os.path.join('reiko_acquisition', 'transcripts')
-    parsed_path = os.path.join('reiko_acquisition', 'parsed_outputs')
-    
-
-    rm_folder = input('y or n for file deletion\n')
-    if rm_folder == 'y':
-        if os.path.exists(parsed_path): 
-            shutil.rmtree(parsed_path)
-
-        # if os.path.exists(evidence_storage):
-        #     shutil.rmtree(evidence_storage)
-        if os.path.exists(transcript_path): 
-            shutil.rmtree(transcript_path)
-
-        print('Files were deleted\n')
-        exit()
-    else: 
-        print('Files were not deleted and closing\n')
-        exit()

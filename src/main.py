@@ -351,21 +351,25 @@ def main():
 
             #Whatsapp
             def whatsapp_export_sql(db_name, db_tables, db_location, db_parsed_path, log_path):
-                    base_dir = os.path.dirname(os.path.abspath(sys.executable))
-                    python_exe = os.path.join(base_dir, r'bin\wadecrypt.exe')
-                    wadb_path = os.path.join('reiko_acquisition', 'evidence_storage', 'whatsapp')
-                    encrypted_wadb_exists = os.path.isfile(fr'{wadb_path}\msgstore.db.crypt14')
+                if getattr(sys, "frozen", False):
+                    base_dir = os.path.dirname(sys.executable)
+                    bin_dir = os.path.join(base_dir, "bin")
+                    wadecrypt_path = os.path.join(bin_dir, 'wadecrypt.exe')
+                else:
+                    wadecrypt_path = r'.\reiko_acquisition\bin\wadecrypt.exe'
                     
-                    if os.path.isfile(os.path.join(wadb_path, 'msgstore.db')):
-                        logging.info("msgstore.db.crypt14 Is Already Decrypted")
-                    else:
-                        if encrypted_wadb_exists == True:
-                            logging.info("msgstore.db.crypt14 Is Being Decrypted") 
-                            execute_command([python_exe, fr'{wadb_path}\key', fr'{wadb_path}\msgstore.db.crypt14', fr'{wadb_path}\msgstore.db'])
+                wadb_path = os.path.join('reiko_acquisition', 'evidence_storage', 'whatsapp')
+                encrypted_wadb_exists = os.path.isfile(fr'{wadb_path}\msgstore.db.crypt14')    
+                if os.path.isfile(os.path.join(wadb_path, 'msgstore.db')):
+                    logging.info("msgstore.db.crypt14 Is Already Decrypted")
+                else:
+                    if encrypted_wadb_exists == True:
+                        logging.info("msgstore.db.crypt14 Is Being Decrypted") 
+                        execute_command([wadecrypt_path, fr'{wadb_path}\key', fr'{wadb_path}\msgstore.db.crypt14', fr'{wadb_path}\msgstore.db'])
 
-                    for table in db_tables:
-                        whatsapp = sqlite3_parser.basic_db_parser(db_name, table, db_location, db_parsed_path, log_path)
-                        whatsapp.exporting_table()
+                for table in db_tables:
+                    whatsapp = sqlite3_parser.basic_db_parser(db_name, table, db_location, db_parsed_path, log_path)
+                    whatsapp.exporting_table()
             
             for database, tables, location, parsed_path in whatsapp_evidence_sql:
                 whatsapp_export_sql(

@@ -5,6 +5,7 @@ from flask import Flask, render_template, redirect, request, url_for
 from datetime import datetime
 import webbrowser
 from threading import Timer, Thread
+import sys
 
 def rend_report():
     phase_list = [
@@ -24,8 +25,8 @@ def rend_report():
                     "file": file,
                     "location": folder
                 })
-    #Make sure to change in the future
-    app = Flask(__name__, template_folder=r'C:\Users\IKS.LAPTOP-AMM5L6TN\Desktop\final_project\reiko_acquisition\web_app\templates')
+    #Make sure to change in the future on other devices
+    app = Flask(__name__, template_folder=r'C:\Users\Stinky\Desktop\final_project\reiko_acquisition\web_app\templates')
 
     @app.route("/")
     def report():
@@ -36,7 +37,13 @@ def rend_report():
         file_to_run = request.args.get('file')
         try:
             #Make sure to change path
-            batch_path = r'reiko_acquisition\web_app\reiko_explorer.bat'
+            if getattr(sys, "frozen", False):
+                base_dir = os.path.dirname(sys.executable)
+                bin_dir = os.path.join(base_dir, "bin")
+                batch_path = os.path.join(bin_dir, 'reiko_explorer.bat')
+            else:
+                batch_path = r'reiko_acquisition\web_app\reiko_explorer.bat'
+
             subprocess.Popen([batch_path, file_to_run], shell=True)
             return "Script started!"
         except Exception as e:

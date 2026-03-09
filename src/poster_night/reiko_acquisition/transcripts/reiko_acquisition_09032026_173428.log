@@ -1,0 +1,112 @@
+2026-03-09 17:34:30,377 - INFO - [Parsing History_urls]
+2026-03-09 17:34:30,380 - INFO - [Parsing Complete]
+
+2026-03-09 17:34:30,380 - INFO - [Loading reiko_acquisition\parsed_outputs\chrome_browser\urls_09032026_173430.csv]
+2026-03-09 17:34:30,383 - INFO - [Converting time format]
+2026-03-09 17:34:30,386 - INFO - [Time conversion complete]
+2026-03-09 17:34:30,390 - INFO - [Parsing History_visits]
+2026-03-09 17:34:30,391 - INFO - [Parsing Complete]
+
+2026-03-09 17:34:30,392 - INFO - [Loading reiko_acquisition\parsed_outputs\chrome_browser\visits_09032026_173430.csv]
+2026-03-09 17:34:30,394 - INFO - [Converting time format]
+2026-03-09 17:34:30,394 - INFO - [reiko_acquisition\parsed_outputs\chrome_browser\visits_09032026_173430.csv]
+2026-03-09 17:34:30,396 - INFO - [Time conversion complete]
+2026-03-09 17:34:30,399 - INFO - [Parsing Web Data_autofill]
+2026-03-09 17:34:30,400 - INFO - [Parsing Complete]
+
+2026-03-09 17:34:30,400 - INFO - [Loading reiko_acquisition\parsed_outputs\chrome_browser\autofill_09032026_173430.csv]
+2026-03-09 17:34:30,402 - INFO - [Converting time format]
+2026-03-09 17:34:30,404 - INFO - [Time conversion complete]
+2026-03-09 17:34:30,407 - INFO - [Parsing Web Data_keywords]
+2026-03-09 17:34:30,408 - INFO - [Parsing Complete]
+
+2026-03-09 17:34:30,409 - INFO - [Loading reiko_acquisition\parsed_outputs\chrome_browser\keywords_09032026_173430.csv]
+2026-03-09 17:34:30,411 - INFO - [Converting time format]
+2026-03-09 17:34:30,413 - INFO - [Time conversion complete]
+2026-03-09 17:34:30,416 - INFO - [Time conversion complete]
+2026-03-09 17:34:30,419 - INFO - [Parsing Web Data_credit_cards]
+2026-03-09 17:34:30,420 - INFO - [Parsing Complete]
+
+2026-03-09 17:34:30,420 - INFO - [Loading reiko_acquisition\parsed_outputs\chrome_browser\credit_cards_09032026_173430.csv]
+2026-03-09 17:34:30,422 - INFO - [Converting time format]
+2026-03-09 17:34:30,425 - INFO - [Parsing Web Data_contact_info]
+2026-03-09 17:34:30,426 - INFO - [Parsing Complete]
+
+2026-03-09 17:34:30,426 - INFO - [Loading reiko_acquisition\parsed_outputs\chrome_browser\contact_info_09032026_173430.csv]
+2026-03-09 17:34:30,428 - INFO - [Converting time format]
+2026-03-09 17:34:30,430 - INFO - [Parsing Top Sites_top_sites]
+2026-03-09 17:34:30,431 - INFO - [Parsing Complete]
+
+2026-03-09 17:34:30,431 - INFO - [Loading reiko_acquisition\parsed_outputs\chrome_browser\top_sites_09032026_173430.csv]
+2026-03-09 17:34:30,433 - INFO - [Converting time format]
+2026-03-09 17:34:30,437 - INFO - [Parsing Cookies_cookies]
+2026-03-09 17:34:30,441 - INFO - [Parsing Complete]
+
+2026-03-09 17:34:30,441 - INFO - [Loading reiko_acquisition\parsed_outputs\chrome_browser\cookies_09032026_173430.csv]
+2026-03-09 17:34:30,446 - INFO - [Converting time format]
+2026-03-09 17:34:30,452 - INFO - [Time conversion complete]
+2026-03-09 17:34:30,458 - INFO - [Time conversion complete]
+2026-03-09 17:34:30,464 - INFO - [Time conversion complete]
+2026-03-09 17:34:30,472 - INFO - [Time conversion complete]
+2026-03-09 17:34:30,477 - INFO - [Parsing turbo.db._battery_event]
+2026-03-09 17:34:30,479 - INFO - [Parsing Complete]
+
+2026-03-09 17:34:30,484 - INFO - [Parsing turbo.db._charging_places]
+2026-03-09 17:34:30,484 - INFO - [Parsing Complete]
+
+2026-03-09 17:34:30,488 - INFO - [Parsing telephony.db._carriers]
+2026-03-09 17:34:30,491 - INFO - [Parsing Complete]
+
+2026-03-09 17:34:30,494 - INFO - [Parsing telephony.db._siminfo]
+2026-03-09 17:34:30,495 - INFO - [Parsing Complete]
+
+2026-03-09 17:34:30,496 - INFO - msgstore.db.crypt14 Is Already Decrypted
+2026-03-09 17:34:30,501 - INFO - [Parsing msgstore.db._message]
+2026-03-09 17:34:30,504 - INFO - [Parsing Complete]
+
+2026-03-09 17:34:30,516 - INFO - [Parsing msgstore.db._jid]
+2026-03-09 17:34:30,524 - INFO - [Parsing Complete]
+
+2026-03-09 17:34:30,527 - INFO - [Parsing Cookies_cookies]
+2026-03-09 17:34:30,529 - INFO - [Parsing Complete]
+
+2026-03-09 17:34:30,530 - INFO - [Parsing ['WifiConfigStore.xml', 'WifiConfigStoreNetworkSuggestions.xml']]
+2026-03-09 17:34:30,531 - INFO - [Parsing Completed]
+2026-03-09 17:34:30,531 - INFO - [Exporting ['WifiConfigStore.xml', 'WifiConfigStoreNetworkSuggestions.xml'] to CSV]
+
+2026-03-09 17:34:30,535 - INFO - [Parsing ['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml']]
+2026-03-09 17:34:30,580 - INFO - [Parsing Completed]
+2026-03-09 17:34:30,580 - INFO - [Exporting ['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml'] to CSV]
+
+2026-03-09 17:34:30,583 - INFO - [Parsing ['userconfing.xml']]
+2026-03-09 17:34:30,588 - INFO - [Parsing Completed]
+2026-03-09 17:34:30,588 - INFO - [Exporting ['userconfing.xml'] to CSV]
+
+2026-03-09 17:34:30,592 - INFO - [Parsing ['CacheStore.xml', 'ClientInfoCache.xml', 'FastCacheStore.xml']]
+2026-03-09 17:34:30,598 - INFO - [Parsing Completed]
+2026-03-09 17:34:30,598 - INFO - [Exporting ['CacheStore.xml', 'ClientInfoCache.xml', 'FastCacheStore.xml'] to CSV]
+
+2026-03-09 17:34:30,601 - INFO - [Parsing ['LoginSignupStore.xml']]
+2026-03-09 17:34:30,602 - INFO - [Parsing Completed]
+2026-03-09 17:34:30,602 - INFO - [Exporting ['LoginSignupStore.xml'] to CSV]
+
+2026-03-09 17:34:31,458 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-09 17:34:31,458 - INFO - [33mPress CTRL+C to quit[0m
+2026-03-09 17:34:31,670 - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "flask\app.py", line 1511, in wsgi_app
+  File "flask\app.py", line 919, in full_dispatch_request
+  File "flask\app.py", line 917, in full_dispatch_request
+  File "flask\app.py", line 902, in dispatch_request
+  File "report_gen.py", line 33, in report
+  File "flask\templating.py", line 150, in render_template
+  File "jinja2\environment.py", line 1087, in get_or_select_template
+  File "jinja2\environment.py", line 1016, in get_template
+  File "jinja2\environment.py", line 975, in _load_template
+  File "jinja2\loaders.py", line 126, in load
+  File "flask\templating.py", line 66, in get_source
+  File "flask\templating.py", line 100, in _get_source_fast
+jinja2.exceptions.TemplateNotFound: report.html
+2026-03-09 17:34:31,672 - INFO - 127.0.0.1 - - [09/Mar/2026 17:34:31] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2026-03-09 17:34:42,929 - INFO - Closing Transcript

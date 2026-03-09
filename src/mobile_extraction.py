@@ -48,9 +48,9 @@ def mobile_acquire():
             lines = output.split('\n')
             devices = [line for line in lines[1:] if line.strip()]
             if devices:
-                print("Device(s) connected:")
-                # for device in devices:
-                #     print(device.split()[0])  # Print the device ID
+                logger.info("Device(s) connected:")
+                for device in devices:
+                    logger.info(device.split()[0])  # Print the device ID
                 return True
             else:
                 print("No devices connected.")
@@ -61,11 +61,13 @@ def mobile_acquire():
             return False
 
     if not check_device_connected():
+        logger.info('Device not connected')
         print('Device not connected')
         pass
 
     if check_device_connected():
         logger.info('Device connected')
+        print('Device connected')
 
         logger.info('Creating target directory')
         execute_command([adb_path, 'shell', "su -c mkdir /storage/emulated/0/target"])

@@ -489,7 +489,7 @@ def main():
             print('Option 1 Selected')
             acquire_warning = input('This can take a while, are you sure? y or n\n')
             if acquire_warning == 'y':
-                mobile_extraction.mobile_acquire(log_file)
+                mobile_extraction.mobile_acquire()
                 if os.name == 'nt':
                     os.system('cls')
             else: 

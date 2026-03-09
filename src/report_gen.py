@@ -26,7 +26,10 @@ def rend_report():
                     "location": folder
                 })
     #Make sure to change in the future on other devices
-    app = Flask(__name__, template_folder=r'C:\Users\Stinky\Desktop\final_project\reiko_acquisition\web_app\templates')
+    base_dir = os.path.dirname(sys.executable)
+    bin_dir = os.path.join(base_dir, "bin")
+    temp_path = os.path.join(bin_dir, 'templates')
+    app = Flask(__name__, template_folder=temp_path)
 
     @app.route("/")
     def report():

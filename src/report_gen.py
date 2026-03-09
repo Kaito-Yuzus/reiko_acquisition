@@ -35,6 +35,7 @@ def rend_report():
     def run_script():
         file_to_run = request.args.get('file')
         try:
+            #Make sure to change path
             batch_path = r'reiko_acquisition\web_app\reiko_explorer.bat'
             subprocess.Popen([batch_path, file_to_run], shell=True)
             return "Script started!"

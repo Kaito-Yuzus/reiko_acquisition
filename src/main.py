@@ -1,3 +1,4 @@
+from tqdm import tqdm
 import shutil
 import tkinter as tk
 import os
@@ -7,7 +8,6 @@ import subprocess
 import self_app_extraction
 import sqlite3_parser
 import xml_parser
-from tqdm import tqdm
 import mobile_extraction
 import report_gen
 import sys 
@@ -485,7 +485,7 @@ def main():
             print('Option 1 Selected')
             acquire_warning = input('This can take a while, are you sure? y or n\n')
             if acquire_warning == 'y':
-                mobile_extraction.mobile_acquire()
+                mobile_extraction.mobile_acquire(log_file)
                 if os.name == 'nt':
                     os.system('cls')
             else: 

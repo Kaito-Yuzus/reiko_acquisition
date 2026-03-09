@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['C:\\Users\\IKS.LAPTOP-AMM5L6TN\\Desktop\\final_project\\reiko_acquisition\\src\\main.py'],
+    ['C:\\Users\\Stinky\\Desktop\\final_project\\reiko_acquisition\\src\\main.py'],
     pathex=[],
     binaries=[],
     datas=[],

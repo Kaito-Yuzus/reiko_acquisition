@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"Reiko Acquire","children":[{"content":"Acquisition","children":[{"content":"Ensures device is plugged in","children":[],"payload":{"tag":"h2","lines":"9,10"}},{"content":"Sends a script to create a temp path","children":[{"content":"Target path added for extraction","children":[],"payload":{"tag":"h3","lines":"13,14"}},{"content":"Script sent will create paths and do the extraction","children":[],"payload":{"tag":"h3","lines":"15,16"}}],"payload":{"tag":"h2","lines":"11,12"}},{"content":"Executes script to use Tar/Gzip","children":[{"content":"Gets the extraction","children":[],"payload":{"tag":"h3","lines":"19,20"}}],"payload":{"tag":"h2","lines":"17,18"}},{"content":"Uses ADB to transfer the script and to grab the extraction","children":[{"content":"Cleans the devices, removing temp and target paths","children":[],"payload":{"tag":"h3","lines":"23,24"}}],"payload":{"tag":"h2","lines":"21,22"}},{"content":"After the dump is sent to the examiner machine, it is sent to the path of choice","children":[],"payload":{"tag":"h2","lines":"25,26"}},{"content":"Logs if there were errors during acquisition of the Android Device","children":[],"payload":{"tag":"h2","lines":"27,28"}}],"payload":{"tag":"h1","lines":"7,8"}},{"content":"Parsing","children":[{"content":"XML","children":[{"content":"Creates a list of elements to sort data by type","children":[{"content":"Empty data is recorded, but filled as empty","children":[],"payload":{"tag":"h4","lines":"35,36"}}],"payload":{"tag":"h3","lines":"33,34"}},{"content":"Parses the entire file","children":[],"payload":{"tag":"h3","lines":"37,38"}},{"content":"Data is parsed to a CSV file","children":[],"payload":{"tag":"h3","lines":"39,40"}},{"content":"Logging for errors and encrypted files","children":[],"payload":{"tag":"h3","lines":"41,42"}}],"payload":{"tag":"h2","lines":"31,32"}},{"content":"SQLite","children":[{"content":"Parses entire SQLite table and it&apos;s content","children":[],"payload":{"tag":"h3","lines":"45,46"}},{"content":"Parses content to a readable CSV format","children":[{"content":"Focuses on noteable tables","children":[],"payload":{"tag":"h4","lines":"49,50"}}],"payload":{"tag":"h3","lines":"47,48"}},{"content":"Content such as WhatsApp is decrypted after extraction","children":[],"payload":{"tag":"h3","lines":"51,52"}},{"content":"Logging for file type errors and empty rows within tables","children":[],"payload":{"tag":"h3","lines":"53,54"}}],"payload":{"tag":"h2","lines":"43,44"}}],"payload":{"tag":"h1","lines":"29,30"}},{"content":"Extraction","children":[{"content":"Decompresses the Gzip extraction","children":[{"content":"Opens the Tar archive","children":[],"payload":{"tag":"h3","lines":"59,60"}}],"payload":{"tag":"h2","lines":"57,58"}},{"content":"Based on the applications within the program, it will grab key files","children":[{"content":"Files such as SQLite and XML files are extracted","children":[{"content":"Need encryption keys for decryption of databases are also collected","children":[],"payload":{"tag":"h4","lines":"65,66"}}],"payload":{"tag":"h3","lines":"63,64"}}],"payload":{"tag":"h2","lines":"61,62"}},{"content":"Sends collected files to a temp staging area, where they will be sorted based on their application name/type","children":[{"content":"Files are needed to be sorted here in order to be parsed","children":[],"payload":{"tag":"h3","lines":"69,70"}},{"content":"Staging paths are removed","children":[],"payload":{"tag":"h3","lines":"71,72"}}],"payload":{"tag":"h2","lines":"67,68"}}],"payload":{"tag":"h1","lines":"55,56"}},{"content":"Reporting","children":[{"content":"Deployment of Flask application","children":[{"content":"Displays interactive table fo evidence from the singular mobile device","children":[],"payload":{"tag":"h3","lines":"77,78"}}],"payload":{"tag":"h2","lines":"75,76"}},{"content":"Rendering of collected and parsed files","children":[{"content":"BAT file to open collected file in file explorer","children":[],"payload":{"tag":"h3","lines":"81,82"}},{"content":"Sorting of collected files","children":[],"payload":{"tag":"h3","lines":"83,84"}},{"content":"Navigation of evidence and where it is stored on the examiner machine","children":[],"payload":{"tag":"h3","lines":"85,86"}},{"content":"Creator information and troubleshooting","children":[],"payload":{"tag":"h3","lines":"87,88"}}],"payload":{"tag":"h2","lines":"79,80"}}],"payload":{"tag":"h1","lines":"73,74"}},{"content":"Logging","children":[{"content":"Each phase has logging to detect if an error exists","children":[],"payload":{"tag":"h2","lines":"91,92"}},{"content":"Determines if evidence was successfully extracted or parsed","children":[{"content":"Gives details on the evidence affected and where","children":[],"payload":{"tag":"h3","lines":"95,96"}}],"payload":{"tag":"h2","lines":"93,94"}},{"content":"Tracks the phases and also error done within scripts and on client device","children":[],"payload":{"tag":"h2","lines":"97,98"}}],"payload":{"tag":"h1","lines":"89,90"}},{"content":"Versions needed","children":[{"content":"Follows custom Android 14 and 16 dataset","children":[{"content":"Datasets can be created from the acquisition phase","children":[],"payload":{"tag":"h3","lines":"103,104"}}],"payload":{"tag":"h2","lines":"101,102"}}],"payload":{"tag":"h1","lines":"99,100"}}]},{"colorFreezeLevel":2})</script>
+</body>
+</html>

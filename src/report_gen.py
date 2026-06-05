@@ -5,6 +5,10 @@ from flask import Flask, render_template, redirect, request, url_for
 from datetime import datetime
 import webbrowser
 from threading import Timer, Thread
+import sys
+
+file_dir = os.path.dirname(__file__)
+parent_dir = os.path.dirname(file_dir) 
 
 def rend_report():
     phase_list = [
@@ -24,8 +28,14 @@ def rend_report():
                     "file": file,
                     "location": folder
                 })
-    #Make sure to change in the future
-    app = Flask(__name__, template_folder=r'C:\Users\IKS.LAPTOP-AMM5L6TN\Desktop\final_project\reiko_acquisition\web_app\templates')
+    #Checks if template is an executabe or python file
+    if getattr(sys, "frozen", False):
+        base_dir = os.path.dirname(sys.executable)
+        template_path = os.path.join(base_dir, '_internal', 'bin', 'templates')
+    else:
+        template_path = os.path.join(parent_dir, 'bin', 'templates')
+
+    app = Flask(__name__, template_folder=template_path)
 
     @app.route("/")
     def report():
@@ -35,7 +45,14 @@ def rend_report():
     def run_script():
         file_to_run = request.args.get('file')
         try:
-            batch_path = r'reiko_acquisition\web_app\reiko_explorer.bat'
+            #Make sure to change path
+            if getattr(sys, "frozen", False):
+                base_dir = os.path.dirname(sys.executable)
+                bin_dir = os.path.join(base_dir, "bin")
+                batch_path = os.path.join(bin_dir, '_internal', 'reiko_explorer.bat')
+            else:
+                batch_path = os.path.join(parent_dir, 'bin', 'reiko_explorer.bat')
+
             subprocess.Popen([batch_path, file_to_run], shell=True)
             return "Script started!"
         except Exception as e:

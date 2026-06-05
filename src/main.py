@@ -353,7 +353,7 @@ def main():
             def whatsapp_export_sql(db_name, db_tables, db_location, db_parsed_path, log_path):
                 if getattr(sys, "frozen", False):
                     base_dir = os.path.dirname(sys.executable)
-                    bin_dir = os.path.join(base_dir, "bin")
+                    bin_dir = os.path.join(base_dir, '_internal','bin')
                     wadecrypt_path = os.path.join(bin_dir, 'wadecrypt.exe')
                 else:
                     wadecrypt_path = r'.\reiko_acquisition\bin\wadecrypt.exe'

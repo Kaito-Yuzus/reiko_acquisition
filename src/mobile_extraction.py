@@ -33,8 +33,8 @@ def mobile_acquire():
     #Checks if program is an executable
     if getattr(sys, "frozen", False):
         base_dir = os.path.dirname(sys.executable)
-        bin_dir = os.path.join(base_dir, "bin")
-        adb_path = os.path.join(bin_dir,'adb', 'adb.exe')
+        bin_dir = os.path.join(base_dir, '_internal', 'bin')
+        adb_path = os.path.join(bin_dir, 'adb', 'adb.exe')
         script_location = os.path.join(bin_dir,'script.sh')
     else:
         adb_path = r'.\reiko_acquisition\bin\adb\adb.exe'

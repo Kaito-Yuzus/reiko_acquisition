@@ -1,0 +1,69 @@
+2026-06-05 15:30:53,175 - INFO - [Parsing History_urls]
+2026-06-05 15:30:53,180 - INFO - [Parsing Complete]
+
+2026-06-05 15:30:53,180 - INFO - [Loading reiko_acquisition\parsed_outputs\chrome_browser\urls_05062026_153053.csv]
+2026-06-05 15:30:53,186 - INFO - [Converting time format]
+2026-06-05 15:30:53,191 - INFO - [Time conversion complete]
+2026-06-05 15:30:53,195 - INFO - [Parsing History_visits]
+2026-06-05 15:30:53,196 - INFO - [Parsing Complete]
+
+2026-06-05 15:30:53,196 - INFO - [Loading reiko_acquisition\parsed_outputs\chrome_browser\visits_05062026_153053.csv]
+2026-06-05 15:30:53,198 - INFO - [Converting time format]
+2026-06-05 15:30:53,199 - INFO - [reiko_acquisition\parsed_outputs\chrome_browser\visits_05062026_153053.csv]
+2026-06-05 15:30:53,200 - INFO - [Time conversion complete]
+2026-06-05 15:30:53,205 - INFO - [Parsing Web Data_autofill]
+2026-06-05 15:30:53,205 - INFO - [Parsing Complete]
+
+2026-06-05 15:30:53,206 - INFO - [Loading reiko_acquisition\parsed_outputs\chrome_browser\autofill_05062026_153053.csv]
+2026-06-05 15:30:53,208 - INFO - [Converting time format]
+2026-06-05 15:30:53,209 - INFO - [Time conversion complete]
+2026-06-05 15:30:53,212 - INFO - [Parsing Web Data_keywords]
+2026-06-05 15:30:53,214 - INFO - [Parsing Complete]
+
+2026-06-05 15:30:53,214 - INFO - [Loading reiko_acquisition\parsed_outputs\chrome_browser\keywords_05062026_153053.csv]
+2026-06-05 15:30:53,216 - INFO - [Converting time format]
+2026-06-05 15:30:53,219 - INFO - [Time conversion complete]
+2026-06-05 15:30:53,221 - INFO - [Time conversion complete]
+2026-06-05 15:30:53,224 - INFO - [Parsing Web Data_credit_cards]
+2026-06-05 15:30:53,225 - INFO - [Parsing Complete]
+
+2026-06-05 15:30:53,225 - INFO - [Loading reiko_acquisition\parsed_outputs\chrome_browser\credit_cards_05062026_153053.csv]
+2026-06-05 15:30:53,227 - INFO - [Converting time format]
+2026-06-05 15:30:53,229 - INFO - Database was probably empty
+2026-06-05 15:30:53,232 - INFO - [Parsing Top Sites_top_sites]
+2026-06-05 15:30:53,233 - INFO - [Parsing Complete]
+
+2026-06-05 15:30:53,233 - INFO - [Loading reiko_acquisition\parsed_outputs\chrome_browser\top_sites_05062026_153053.csv]
+2026-06-05 15:30:53,235 - INFO - [Converting time format]
+2026-06-05 15:30:53,238 - INFO - [Parsing Cookies_cookies]
+2026-06-05 15:30:53,239 - INFO - [Parsing Complete]
+
+2026-06-05 15:30:53,239 - INFO - [Loading reiko_acquisition\parsed_outputs\chrome_browser\cookies_05062026_153053.csv]
+2026-06-05 15:30:53,245 - INFO - [Converting time format]
+2026-06-05 15:30:53,248 - INFO - [Time conversion complete]
+2026-06-05 15:30:53,253 - INFO - [Time conversion complete]
+2026-06-05 15:30:53,260 - INFO - [Time conversion complete]
+2026-06-05 15:30:53,267 - INFO - [Time conversion complete]
+2026-06-05 15:30:53,269 - INFO - [Does not exist, moving to next database]
+2026-06-05 15:30:53,269 - INFO - [Does not exist, moving to next database]
+2026-06-05 15:30:53,273 - INFO - [Parsing telephony.db._carriers]
+2026-06-05 15:30:53,275 - INFO - [Parsing Complete]
+
+2026-06-05 15:30:53,279 - INFO - [Parsing telephony.db._siminfo]
+2026-06-05 15:30:53,281 - INFO - [Parsing Complete]
+
+2026-06-05 15:30:53,282 - INFO - [Does not exist, moving to next database]
+2026-06-05 15:30:53,283 - INFO - [Does not exist, moving to next database]
+2026-06-05 15:30:53,283 - INFO - [Does not exist, moving to next database]
+2026-06-05 15:30:53,285 - INFO - [Parsing ['WifiConfigStore.xml', 'WifiConfigStoreNetworkSuggestions.xml']]
+2026-06-05 15:30:53,286 - INFO - [Parsing Completed]
+2026-06-05 15:30:53,286 - INFO - [Exporting ['WifiConfigStore.xml', 'WifiConfigStoreNetworkSuggestions.xml'] to CSV]
+
+2026-06-05 15:30:53,289 - INFO - [Parsing ['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml']]
+2026-06-05 15:30:53,295 - INFO - [Parsing Completed]
+2026-06-05 15:30:53,295 - INFO - [Exporting ['WifiConfigStore.xml', 'WifiConfigStoreSoftAp.xml'] to CSV]
+
+2026-06-05 15:31:06,486 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-06-05 15:31:06,486 - INFO - [33mPress CTRL+C to quit[0m
+2026-06-05 15:31:06,763 - INFO - 127.0.0.1 - - [05/Jun/2026 15:31:06] "GET / HTTP/1.1" 200 -

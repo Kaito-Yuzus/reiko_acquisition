@@ -33,29 +33,30 @@ class basic_db_parser:
         db_exists = os.path.isfile(db_path)
         
         if db_exists == True:
+            try:
+                output_path = os.path.join('reiko_acquisition', 'parsed_outputs', self.db_parsed_path)
+                os.makedirs(output_path, exist_ok=True)
 
-            output_path = os.path.join('reiko_acquisition', 'parsed_outputs', self.db_parsed_path)
-            os.makedirs(output_path, exist_ok=True)
+                conn = sqlite3.connect(db_path)
+                cursor = conn.cursor()
+                cursor.execute(f'SELECT * FROM {self.table_name}')
+                rows = cursor.fetchall()
 
-            conn = sqlite3.connect(db_path)
-            cursor = conn.cursor()
-            cursor.execute(f'SELECT * FROM {self.table_name}')
-            rows = cursor.fetchall()
-
-            columns = []
-            for column in cursor.description:
-                columns.append(column[0])
-            df = pd.DataFrame(rows, columns=[column[0] for column in cursor.description])
-            os.makedirs(output_path, exist_ok=True)
-            timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')
-            final_parsed_path = os.path.join(output_path,f'{self.table_name}_{timestamp}.csv')
-            logging.info(f'[Parsing {self.db_name}_{self.table_name}]')
-            df.to_csv(final_parsed_path, index=False)
-            logging.info('[Parsing Complete]\n')
-            conn.close()
-            del df
-            return final_parsed_path
-            
+                columns = []
+                for column in cursor.description:
+                    columns.append(column[0])
+                df = pd.DataFrame(rows, columns=[column[0] for column in cursor.description])
+                os.makedirs(output_path, exist_ok=True)
+                timestamp = datetime.datetime.now().strftime('%d%m%Y_%H%M%S')
+                final_parsed_path = os.path.join(output_path,f'{self.table_name}_{timestamp}.csv')
+                logging.info(f'[Parsing {self.db_name}_{self.table_name}]')
+                df.to_csv(final_parsed_path, index=False)
+                logging.info('[Parsing Complete]\n')
+                conn.close()
+                del df
+                return final_parsed_path
+            except:
+                logging.info('Database was probably empty')
         else:
             pass
             logging.info('[Does not exist, moving to next database]')  
